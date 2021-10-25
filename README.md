@@ -1,8 +1,9 @@
-# Simulations for Brownian Motion
-Stochastic process | *Brownian motion* 
+# Stohastic simulations for Brownian Motion
+DFG | *Nonlinear Dynamics*
 <br>
+<br> **Project**: Diffusion and random search in heterogeneous media (pno. [452796171](https://gepris.dfg.de/gepris/projekt/452796171?language=en))
 <br> **Project cordinator**: PhD. Trifce Sandev
-<br> **Students**: Viktor Domazetoski, Pece Trajanovski, Kiril Zelenkovski 
+<br> **Research associates**: Pece Trajanovski, Kiril Zelenkovski
 
 
 

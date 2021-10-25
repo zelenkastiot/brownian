@@ -23,10 +23,9 @@ parts:
       - file: 04/1_d_search
 
 
-
     - caption: "Resources"
       chapters:
-      - url: https://github.com/zelenelez/brownian_motion_simulations
+      - url: https://github.com/zelenkastiot/brownian
         title: "GitHub repository"
-      - url: https://github.com/zelenelez/brownian_motion_simulations
+      - url: https://dash-brownian.herokuapp.com/
         title: "Dashboard"
