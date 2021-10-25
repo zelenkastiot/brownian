@@ -1,0 +1,32 @@
+# Table of contents
+format: jb-book
+root: index
+parts:
+    - caption: "1. Simple diffusion"
+      chapters:
+      - file: 01/Moment_no_drift
+      - file: 01/Moment_drift
+
+    - caption: "2. Diffusion in comb"
+      chapters:
+      - file: 02/comb_theory
+      - file: 02/2_d_comb_1
+      - file: 02/3_d_comb_1
+
+    - caption: "3. Stohastic reseting"
+      chapters:
+      - file: 03/1_d_reset
+
+
+    - caption: "4. Brownian search"
+      chapters:
+      - file: 04/1_d_search
+
+
+
+    - caption: "Resources"
+      chapters:
+      - url: https://github.com/zelenelez/brownian_motion_simulations
+        title: "GitHub repository"
+      - url: https://github.com/zelenelez/brownian_motion_simulations
+        title: "Dashboard"
