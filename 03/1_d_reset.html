@@ -340,8 +340,8 @@ $<span class="math notranslate nohighlight">\(
 \)</span>$</p>
 <p>with initial condition <span class="math notranslate nohighlight">\(P_{r}(x,t=0)=\delta(x-x_0)\)</span>. Here <span class="math notranslate nohighlight">\(r\)</span> is the rate of resetting to the initial position <span class="math notranslate nohighlight">\(x_0\)</span>. The last two terms of the equation represent the loss of the probability from position <span class="math notranslate nohighlight">\(x\)</span> due to the reset to the initial position, and the gain of the probability at <span class="math notranslate nohighlight">\(x_0\)</span> due to resetting from all other positions, respectively. This equation means that between any two consecutive resetting events the particle undergoes diffusion with the constant drift.</p>
 <p>This process can be simulated by using Langevin equation approach. We consider the Langevin equation in the presence of stochastic resetting to the initial position</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aa92a666-c5f6-44cc-8e46-9e62109e58ca">
-<span class="eqno">(19)<a class="headerlink" href="#equation-aa92a666-c5f6-44cc-8e46-9e62109e58ca" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-46f79af1-946f-4fa0-99a2-20b1f1425a43">
+<span class="eqno">(19)<a class="headerlink" href="#equation-46f79af1-946f-4fa0-99a2-20b1f1425a43" title="Permalink to this equation">¶</a></span>\[\begin{align}
 x(t+\Delta t)=\left\lbrace\begin{array}{lll}
      &amp; x(0), &amp;\textrm{with probability}\, r\Delta t,\\
      &amp; x(t)+\sqrt{2\mathcal{D}\Delta t}\,\zeta(t), &amp; \textrm{with probability}\, (1-r\Delta t).
@@ -352,7 +352,7 @@ x(t+\Delta t)=\left\lbrace\begin{array}{lll}
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="a-main-class">
 <h1>A. Main class<a class="headerlink" href="#a-main-class" title="Permalink to this headline">¶</a></h1>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd"> </span>
@@ -1263,14 +1263,14 @@ x(t+\Delta t)=\left\lbrace\begin{array}{lll}
 </div>
 </div>
 </div>
-<p>Run simulation with initial parameters:</p>
+<p>Run simulation with initial parameters (works well with smaller <span class="math notranslate nohighlight">\(dt\)</span> as well):</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(n = 10^3\)</span> - Number of simulations</p></li>
 <li><p><span class="math notranslate nohighlight">\(V = 0 \)</span> - Drift</p></li>
 <li><p><span class="math notranslate nohighlight">\(D_x = 1\)</span> - diffusion coefficient</p></li>
 <li><p><span class="math notranslate nohighlight">\(dt=1\)</span> - interval size or step size</p></li>
 <li><p><span class="math notranslate nohighlight">\(tt = 10^5\)</span>  - total time for each simulation</p></li>
-<li><p><span class="math notranslate nohighlight">\(r=0.0005\)</span> - reset rate</p></li>
+<li><p><span class="math notranslate nohighlight">\(r=0.0001\)</span> - reset rate</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1416,11 +1416,11 @@ Solution is with size:  (1000, 100001)
     <div class="container">
       <p>
         
-          By Trifce Sandev, Viktor Domazetoski, Pece Trajanovski, Kiril Zelenkovski<br/>
+          By Trifce Sandev, Pece Trajanovski, Kiril Zelenkovski<br/>
         
             &copy; Copyright 2021.<br/>
           <div class="extra_footer">
-            <a href="http://csit.manu.edu.mk/">Macedonian Academy of Sciences and Arts - MANU, Skopje, Macedonia</a>
+            <a href="http://csit.manu.edu.mk/">Macedonian Academy of Sciences and Arts - MASA, Skopje, Macedonia</a>
           </div>
       </p>
     </div>

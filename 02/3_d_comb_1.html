@@ -366,8 +366,8 @@
 <p><em>09-Nov-21</em></p>
 <p>The motion along such three-dimensional comb structure can be simulated by the following coupled Langevin equations</p>
 <br>
-<div class="amsmath math notranslate nohighlight" id="equation-bacd314f-3acd-4482-9026-fadacd2244f8">
-<span class="eqno">(18)<a class="headerlink" href="#equation-bacd314f-3acd-4482-9026-fadacd2244f8" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-81decbf7-aa75-4f4a-a2d4-b571f013b21b">
+<span class="eqno">(18)<a class="headerlink" href="#equation-81decbf7-aa75-4f4a-a2d4-b571f013b21b" title="Permalink to this equation">¶</a></span>\[\begin{align}
 &amp; x(t+\Delta t)=x(t)+\sqrt{2D_xA(y)B(z)\Delta t}\,\zeta_{x}(t),\\
 &amp; y(t+\Delta t)=y(t)+\sqrt{2D_yB(z)\Delta t}\,\zeta_{y}(t),\\
 &amp; z(t+\Delta t)=z(t)+\sqrt{2D_z\Delta t}\,\zeta_{z}(t),
@@ -380,9 +380,9 @@
 <br>
 <p>The function can by replicated by <span class="math notranslate nohighlight">\(A(y) = \frac{1}{\sqrt{2\pi}\sigma}\exp(-y^2/[2\sigma^2])\)</span> in the limit <span class="math notranslate nohighlight">\(\sigma\to 0\)</span>, for different values for <span class="math notranslate nohighlight">\(\sigma=[1, 0.1, 0.01]\)</span>.</p>
 <p>On the other hand, the function <span class="math notranslate nohighlight">\(B(z)=\delta(z)\)</span> is the same formula for the Dirac <span class="math notranslate nohighlight">\(\delta\)</span>-function as <span class="math notranslate nohighlight">\(A(y)\)</span>, but instead it beeing used for the y-axis it is for the z-axis. At a random point z, the function has value <span class="math notranslate nohighlight">\(B(z) = \frac{1}{\sqrt{2\pi}\sigma}\exp(-z^2/[2\sigma^2])\)</span>, where the limit <span class="math notranslate nohighlight">\(\sigma\to 0\)</span>.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python imports</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python imports</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -395,7 +395,7 @@
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1.inset_locator</span> <span class="kn">import</span> <span class="n">mark_inset</span><span class="p">,</span> <span class="n">inset_axes</span><span class="p">,</span> <span class="n">zoomed_inset_axes</span>
 
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
 
 <span class="n">figure</span><span class="p">,</span> <span class="p">(</span><span class="n">ax</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 
@@ -476,7 +476,7 @@
 <p>Running a simple check for the value at zero:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">B</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sig</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">pi</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">B</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sig</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">pi</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">):</span>
   <span class="n">f1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sig</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="o">/</span> <span class="n">sig</span>
   <span class="k">return</span> <span class="n">f1</span>
 
@@ -494,9 +494,9 @@
 <div class="section" id="b-modeling-the-dimensions">
 <h2>B. Modeling the dimensions<a class="headerlink" href="#b-modeling-the-dimensions" title="Permalink to this headline">¶</a></h2>
 <p>Main class for 3D backbone:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd"> </span>
 <span class="sd">    Created on 26-Oct-2021</span>
 <span class="sd">    @author: zelenkastiot</span>
@@ -1411,7 +1411,7 @@ of the same order of magnitude.</p>
 <p>If we set <span class="math notranslate nohighlight">\(\mathcal{D}_i=\frac{\beta_i^2}{2}=0.005\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">D1</span> <span class="o">=</span> <span class="n">D2</span> <span class="o">=</span> <span class="n">D3</span> <span class="o">=</span> <span class="mf">0.005</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D1</span> <span class="o">=</span> <span class="n">D2</span> <span class="o">=</span> <span class="n">D3</span> <span class="o">=</span> <span class="mf">0.005</span>
 </pre></div>
 </div>
 </div>
@@ -1419,7 +1419,7 @@ of the same order of magnitude.</p>
 <p>Then the values are:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Dz</span> <span class="o">=</span> <span class="n">D3</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Dz</span> <span class="o">=</span> <span class="n">D3</span>
 <span class="n">Dy</span> <span class="o">=</span> <span class="n">D2</span> <span class="o">*</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Dz</span><span class="p">)</span>
 <span class="n">Dx</span> <span class="o">=</span> <span class="n">D1</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Dy</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Dz</span><span class="p">))</span> 
 
@@ -1449,7 +1449,7 @@ Dz: 0.005000
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define parameters for BM process</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define parameters for BM process</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">10_000</span>  <span class="c1"># Size of Ensemble</span>
 <span class="n">V</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Drift for the diffusion process, v - external force (drift)</span>
 <span class="n">delta_t</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># dt = interval_size</span>
@@ -1489,7 +1489,7 @@ Dz: 0.005000
 <p>Shape of solution:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">s3</span><span class="p">)</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">solution</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">s3</span><span class="p">)</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">solution</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;no. simulations: </span><span class="si">{x}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">s1</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;no. dimensions:  </span><span class="si">{x}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">s2</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;no. time points: </span><span class="si">{x}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">s3</span><span class="p">))</span>
@@ -1507,7 +1507,7 @@ no. time points: 10001
 <p>Plot the 3 trajectories for random process out of the Ensemble:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Matplotlib subplot</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Matplotlib subplot</span>
 <span class="n">BrownianMotionLangevin</span><span class="o">.</span><span class="n">plot_trajectories</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1519,9 +1519,9 @@ no. time points: 10001
 <div class="section" id="results">
 <h3>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h3>
 <p>3D comb random walk:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotly, interactive plot</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotly, interactive plot</span>
 <span class="kn">from</span> <span class="nn">plotly.offline</span> <span class="kn">import</span> <span class="n">plot</span><span class="p">,</span> <span class="n">iplot</span><span class="p">,</span> <span class="n">init_notebook_mode</span>
 <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
 <span class="n">init_notebook_mode</span><span class="p">(</span><span class="n">connected</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
@@ -1669,7 +1669,7 @@ require(['plotly'], function(Plotly) {
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">BrownianMotionLangevin</span><span class="o">.</span><span class="n">plot_msd</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">BrownianMotionLangevin</span><span class="o">.</span><span class="n">plot_msd</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1763,11 +1763,11 @@ Dist. for Z has shape: (10000, 10001)
     <div class="container">
       <p>
         
-          By Trifce Sandev, Viktor Domazetoski, Pece Trajanovski, Kiril Zelenkovski<br/>
+          By Trifce Sandev, Pece Trajanovski, Kiril Zelenkovski<br/>
         
             &copy; Copyright 2021.<br/>
           <div class="extra_footer">
-            <a href="http://csit.manu.edu.mk/">Macedonian Academy of Sciences and Arts - MANU, Skopje, Macedonia</a>
+            <a href="http://csit.manu.edu.mk/">Macedonian Academy of Sciences and Arts - MASA, Skopje, Macedonia</a>
           </div>
       </p>
     </div>

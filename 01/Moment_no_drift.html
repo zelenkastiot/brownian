@@ -347,20 +347,20 @@
 <h2>A. Diffusion equation<a class="headerlink" href="#a-diffusion-equation" title="Permalink to this headline">¶</a></h2>
 <p>The solution of the following diffusion equation
 <br></p>
-<div class="amsmath math notranslate nohighlight" id="equation-5e36dab8-08b2-44d1-bb90-e297028c10b9">
-<span class="eqno">(1)<a class="headerlink" href="#equation-5e36dab8-08b2-44d1-bb90-e297028c10b9" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-04b6d7ba-94a8-4327-a4ca-ab1ba1d1dba7">
+<span class="eqno">(1)<a class="headerlink" href="#equation-04b6d7ba-94a8-4327-a4ca-ab1ba1d1dba7" title="Permalink to this equation">¶</a></span>\[\begin{align}
   \frac{\partial}{\partial t}P(x,t)=\mathcal{D}\frac{\partial^2}{\partial x^2}P(x,t),
   \end{align}\]</div>
 <br>
 <p>in the infinite domain <span class="math notranslate nohighlight">\(x\in(-\infty,\infty)\)</span>, for initial condition <span class="math notranslate nohighlight">\(P(x,t=0)=\delta(x-x_0)\)</span> and zero boundary conditions at infinity <span class="math notranslate nohighlight">\(P(x=\pm\infty,t)=0\)</span>, where <span class="math notranslate nohighlight">\(P(x,t)\)</span> is the probability density function (PDF) and <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> is diffusion coefficient, is given by the Gaussian probability density function</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9664099c-d551-459e-8bff-538f39ca47e7">
-<span class="eqno">(2)<a class="headerlink" href="#equation-9664099c-d551-459e-8bff-538f39ca47e7" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4da36d85-884d-4f0e-b98a-10c40eaf3160">
+<span class="eqno">(2)<a class="headerlink" href="#equation-4da36d85-884d-4f0e-b98a-10c40eaf3160" title="Permalink to this equation">¶</a></span>\[\begin{align}
     P(x,t)=\frac{1}{\sqrt{4\pi\mathcal{D}t}}e^{-\frac{(x-x_0)^2}{4\mathcal{D}t}}.
 \end{align}\]</div>
 <p>This diffusion equation describes Brownian motion. The Brownian motion can also be modeled by the Langevin equation
 <br></p>
-<div class="amsmath math notranslate nohighlight" id="equation-4ffd5ff2-d893-4f9f-87c3-86fbca42708b">
-<span class="eqno">(3)<a class="headerlink" href="#equation-4ffd5ff2-d893-4f9f-87c3-86fbca42708b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-dd6587da-9a27-49e5-9ec9-f4be81893f99">
+<span class="eqno">(3)<a class="headerlink" href="#equation-dd6587da-9a27-49e5-9ec9-f4be81893f99" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \dot{x}(t)=\sqrt{2\mathcal{D}}\,\xi(t),
 \end{align}\]</div>
 <br>
@@ -378,16 +378,16 @@
 <br>
 <p>The numerical solution is done by numerical integration of the Langevin equation, i.e.,</p>
 <br>
-<div class="amsmath math notranslate nohighlight" id="equation-27bb023f-822c-4270-89c0-db1ae659e67b">
-<span class="eqno">(4)<a class="headerlink" href="#equation-27bb023f-822c-4270-89c0-db1ae659e67b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-73c03ea9-9158-4f58-ba99-acba438b21b8">
+<span class="eqno">(4)<a class="headerlink" href="#equation-73c03ea9-9158-4f58-ba99-acba438b21b8" title="Permalink to this equation">¶</a></span>\[\begin{align}
     x(t+\Delta t)=x(t)+\sqrt{2\mathcal{D}\Delta t}\,\zeta(t),
 \end{align}\]</div>
 <br>
 <p>where <span class="math notranslate nohighlight">\(\zeta(t)\)</span> is a zero-mean Gaussian random variable <span class="math notranslate nohighlight">\(\sim N(0, \Delta t)\)</span>.</p>
 <p>Mean squared displacement is calculated using
 <br></p>
-<div class="amsmath math notranslate nohighlight" id="equation-99245813-b898-40e9-bcf7-c8aa31019209">
-<span class="eqno">(5)<a class="headerlink" href="#equation-99245813-b898-40e9-bcf7-c8aa31019209" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ed267a98-c240-406d-bcae-8bb873cf3fd1">
+<span class="eqno">(5)<a class="headerlink" href="#equation-ed267a98-c240-406d-bcae-8bb873cf3fd1" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \langle x^2(t)\rangle=\int_{-\infty}^{\infty}x^2 P(x,t)\,dx=\int_{-\infty}^{\infty}x^2 \frac{1}{\sqrt{4\pi\mathcal{D}t}}e^{-\frac{(x-x_0)^2}{4\mathcal{D}t}}\,dx=x_0^2+2\mathcal{D}t.
 \end{align}\]</div>
 <p>Main class for stohastic process:</p>
@@ -566,8 +566,8 @@
 <h3>B.1. Second moment, <span class="math notranslate nohighlight">\(\langle x^2(t)\rangle\)</span><a class="headerlink" href="#b-1-second-moment-langle-x-2-t-rangle" title="Permalink to this headline">¶</a></h3>
 <p>Mean squared displacement is given by
 <br></p>
-<div class="amsmath math notranslate nohighlight" id="equation-28c69c4c-4d66-465e-9fc7-4f682ad9acf8">
-<span class="eqno">(6)<a class="headerlink" href="#equation-28c69c4c-4d66-465e-9fc7-4f682ad9acf8" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4a4060a0-f7a8-449d-9d50-c43c0a72a927">
+<span class="eqno">(6)<a class="headerlink" href="#equation-4a4060a0-f7a8-449d-9d50-c43c0a72a927" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \langle x^2(t)\rangle=\int_{-\infty}^{\infty}x^2 P(x,t)\,dx=\int_{-\infty}^{\infty}x^2 \frac{1}{\sqrt{4\pi\mathcal{D}t}}e^{-\frac{(x-x_0)^2}{4\mathcal{D}t}}\,dx=x_0^2+2\mathcal{D}t.
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -653,8 +653,8 @@ Scale in case of smaler dt, scale=1.00
 <div class="section" id="b-2-pdf-p-x-t">
 <h3>B.2. PDF, <span class="math notranslate nohighlight">\(P(x,t)\)</span><a class="headerlink" href="#b-2-pdf-p-x-t" title="Permalink to this headline">¶</a></h3>
 <p><span class="math notranslate nohighlight">\(P(x,t)\)</span> is the probability density function (PDF) and <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> is diffusion coefficient, is given by the Gaussian probability density function</p>
-<div class="amsmath math notranslate nohighlight" id="equation-09ed0740-b55f-49ed-90d5-1fc3736f0821">
-<span class="eqno">(7)<a class="headerlink" href="#equation-09ed0740-b55f-49ed-90d5-1fc3736f0821" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ea1b23f1-416e-45bb-a079-591531fe361f">
+<span class="eqno">(7)<a class="headerlink" href="#equation-ea1b23f1-416e-45bb-a079-591531fe361f" title="Permalink to this equation">¶</a></span>\[\begin{align}
     P(x,t)=\frac{1}{\sqrt{4\pi\mathcal{D}t}}e^{-\frac{(x-x_0)^2}{4\mathcal{D}t}}.
 \end{align}\]</div>
 <p>We calculate the distributions for 3 different times (<span class="math notranslate nohighlight">\(t=[1, 2, 10]\)</span>) and plot their distribution vs. the theoretical for the exact times</p>
@@ -889,11 +889,11 @@ t=10, MSE = 0.0023
     <div class="container">
       <p>
         
-          By Trifce Sandev, Viktor Domazetoski, Pece Trajanovski, Kiril Zelenkovski<br/>
+          By Trifce Sandev, Pece Trajanovski, Kiril Zelenkovski<br/>
         
             &copy; Copyright 2021.<br/>
           <div class="extra_footer">
-            <a href="http://csit.manu.edu.mk/">Macedonian Academy of Sciences and Arts - MANU, Skopje, Macedonia</a>
+            <a href="http://csit.manu.edu.mk/">Macedonian Academy of Sciences and Arts - MASA, Skopje, Macedonia</a>
           </div>
       </p>
     </div>

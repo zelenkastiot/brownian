@@ -356,8 +356,8 @@
 <p><em>25-Oct-21</em></p>
 <p>The motion along such two-dimensional comb structure can be simulated by the following coupled Langevin equations</p>
 <br>
-<div class="amsmath math notranslate nohighlight" id="equation-6c970bdd-5e93-4039-94cf-c4f811db36f7">
-<span class="eqno">(17)<a class="headerlink" href="#equation-6c970bdd-5e93-4039-94cf-c4f811db36f7" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2c92abc4-03b9-47c8-93b4-bc45cbdfd286">
+<span class="eqno">(17)<a class="headerlink" href="#equation-2c92abc4-03b9-47c8-93b4-bc45cbdfd286" title="Permalink to this equation">¶</a></span>\[\begin{align}
 &amp; x(t+\Delta t)=x(t)+\sqrt{2D_xA(y)\Delta t}\,\zeta_{x}(t),\\
 &amp; y(t+\Delta t)=y(t)+\sqrt{2D_y\Delta t}\,\zeta_{y}(t),
 \end{align}\]</div>
@@ -368,7 +368,7 @@
 <p>The approach to replicate the Dirac <span class="math notranslate nohighlight">\(\delta\)</span>-function in this notebook is to use <span class="math notranslate nohighlight">\(A(y)=\delta(y)\)</span> and then to employ some approximation formula for the Dirac <span class="math notranslate nohighlight">\(\delta\)</span>-function, for example <span class="math notranslate nohighlight">\(A(y) = \frac{1}{\sqrt{2\pi}\sigma}\exp(-y^2/[2\sigma^2])\)</span> in the limit <span class="math notranslate nohighlight">\(\sigma\to 0\)</span>.</p>
 <br>
 <p>The function can by replicated by <span class="math notranslate nohighlight">\(A(y) = \frac{1}{\sqrt{2\pi}\sigma}\exp(-y^2/[2\sigma^2])\)</span> in the limit <span class="math notranslate nohighlight">\(\sigma\to 0\)</span>, for different values for <span class="math notranslate nohighlight">\(\sigma=[1, 0.1, 0.01]\)</span></p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python imports</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -482,7 +482,7 @@
 <div class="section" id="b-modeling-the-dimensions">
 <h2>B. Modeling the dimensions<a class="headerlink" href="#b-modeling-the-dimensions" title="Permalink to this headline">¶</a></h2>
 <p>Main class for 2D backbone:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python imports</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -711,7 +711,7 @@
 <div class="section" id="results">
 <h3>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h3>
 <p>2D comb random walk:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotly, interactive plot</span>
 <span class="kn">from</span> <span class="nn">plotly.offline</span> <span class="kn">import</span> <span class="n">plot</span><span class="p">,</span> <span class="n">iplot</span><span class="p">,</span> <span class="n">init_notebook_mode</span>
@@ -1008,11 +1008,11 @@ Dist. for Y has shape: (10000, 10001)
     <div class="container">
       <p>
         
-          By Trifce Sandev, Viktor Domazetoski, Pece Trajanovski, Kiril Zelenkovski<br/>
+          By Trifce Sandev, Pece Trajanovski, Kiril Zelenkovski<br/>
         
             &copy; Copyright 2021.<br/>
           <div class="extra_footer">
-            <a href="http://csit.manu.edu.mk/">Macedonian Academy of Sciences and Arts - MANU, Skopje, Macedonia</a>
+            <a href="http://csit.manu.edu.mk/">Macedonian Academy of Sciences and Arts - MASA, Skopje, Macedonia</a>
           </div>
       </p>
     </div>
