@@ -14,8 +14,8 @@ A jupyter-book that explores mearly a chunk of the field of nonlinear dynamics, 
 
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/zelenelez/images/master/Animation.gif" width=65%;></img> <br> <br>
-Dashboard deployed on Heroku
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Brownianmotion5particles150frame.gif" width=40%;></img> <br> <br>
+Fig: Simple simulation of the Brownian motion for 5 particles (yellow) that collide with a large set of 800 particles. <a href="https://weelookang.blogspot.com/2010/06/ejs-open-source-brownian-motion-gas.html">[Source]</a>
 </p>
 
 <br>
