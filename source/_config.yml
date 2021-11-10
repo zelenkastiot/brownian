@@ -1,8 +1,6 @@
 # Book settings
-# Learn more at https://jupyterbook.org/customize/config.html
-
 title                        : "Stochastic simulations Brownian Motion"
-author                       : "Trifce Sandev, Viktor Domazetoski, Pece Trajanovski, Kiril Zelenkovski"
+author                       : "Trifce Sandev, Pece Trajanovski, Kiril Zelenkovski"
 copyright                    : "2021"
 logo                         : images/logo.png
 exclude_patterns             : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints"]
@@ -35,7 +33,7 @@ html:
   use_repository_button     : true
   use_issues_button         : true
   extra_navbar              : Powered by <a href="https://www.dfg.de/">DFG</a>
-  extra_footer              : <a href="http://csit.manu.edu.mk/">Macedonian Academy of Sciences and Arts - MANU, Skopje, Macedonia</a>
+  extra_footer              : <a href="http://csit.manu.edu.mk/">Macedonian Academy of Sciences and Arts - MASA, Skopje, Macedonia</a>
   home_page_in_navbar       : true
   baseurl                   : ""
   comments:
