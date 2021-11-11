@@ -8,7 +8,7 @@ since 21' | *Deutsche Forschungsgemeinschaft (DFG)*
 
 <br>
 
-📬 Contact email: <a href="https://github.com/zelenkastiot"> @kzelenkovski@manu.edu.mk </a>
+📬 Contact email: <a href="https://github.com/zelenkastiot"> @kzelenkovski@manu.edu.mk</a>
 
 <br>
 <p align="center">
