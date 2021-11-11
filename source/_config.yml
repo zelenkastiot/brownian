@@ -1,4 +1,4 @@
-# Book settings
+# General book settings
 title                        : "Stochastic simulations Brownian Motion"
 author                       : "Trifce Sandev, Pece Trajanovski, Kiril Zelenkovski"
 copyright                    : "2021"
@@ -29,13 +29,14 @@ html:
   comments:
     hypothesis              : true
 
+# Launch buttons
 launch_buttons:
   notebook_interface        : "jupyterlab"
   binderhub_url             : "https://mybinder.org"
   thebe                     : false
   colab_url                 : "https://colab.research.google.com/drive/1oYtd0SE9Jwnm9foC6MJEdXdc2b07-7be?usp=sharing"
 
-
+# Extensions
 parse:
   myst_enable_extensions:
     - html_image
@@ -49,3 +50,8 @@ parse:
     - replacements
     - smartquotes
     - substitution
+
+# By default MathJax version 2 is currently used. If you are using a lot of math, you may want to try using version 3, which claims to improve load speeds by 60 - 80%:
+sphinx:
+  config:
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
