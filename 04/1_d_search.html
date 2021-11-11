@@ -329,41 +329,41 @@
 <p>Many studies on random searches have employed the Brownian search as a default strategy in foraging theory with incomplete information, while others have proposed Levy flights as an efficient strategy in searching for sufficiently sparse targets, stating that the Levy process is one of the most natural and optimal in the search strategy.
 The corresponding Fokker-Planck equation of a Brownian random search process for the non-normalized density function <span class="math notranslate nohighlight">\(f(x,t)\)</span> with a <span class="math notranslate nohighlight">\(\delta\)</span>-sink of strength <span class="math notranslate nohighlight">\(\mathcal{P}_{\textrm{fa}}\)</span> reads</p>
 <br>
-<div class="amsmath math notranslate nohighlight" id="equation-0f81ca42-81a9-484f-8b9c-1d5260a9dffc">
-<span class="eqno">(20)<a class="headerlink" href="#equation-0f81ca42-81a9-484f-8b9c-1d5260a9dffc" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6fbc7969-ac30-4b65-991f-27f36d89bd0d">
+<span class="eqno">(20)<a class="headerlink" href="#equation-6fbc7969-ac30-4b65-991f-27f36d89bd0d" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \frac{\partial}{\partial t}f(x,t)=\mathcal{D}\frac{\partial^{2}}{\partial x^2} f(x,t)-\mathcal{P}_{\mathrm{fa}}(t)\delta(x-X),
 \end{align}\]</div>
 <br>
 <p>where <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> is a diffusion coefficient. One assumes here that the initial position is given at <span class="math notranslate nohighlight">\(x=x_0\)</span> by <span class="math notranslate nohighlight">\(f(x,t=0)=\delta(x-x_0)\)</span>. The <span class="math notranslate nohighlight">\(\delta\)</span>-sink means that the random searcher positioned at the beginning at <span class="math notranslate nohighlight">\(x=x_{0}\)</span>,  will be removed at the first arrival at <span class="math notranslate nohighlight">\(x=X\)</span>, i.e., <span class="math notranslate nohighlight">\(f(x=X,t)=0\)</span>. Therefore, <span class="math notranslate nohighlight">\(\mathcal{P}_{\mathrm{fa}}(t)\)</span> represents the <em>first arrival time distribution (FATD)</em>, obtained from</p>
 <br>
-<div class="amsmath math notranslate nohighlight" id="equation-7cdb845f-5bac-4e3f-80b4-1b07f55b8070">
-<span class="eqno">(21)<a class="headerlink" href="#equation-7cdb845f-5bac-4e3f-80b4-1b07f55b8070" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e6b205c7-23c9-4e83-b479-35c734c4ea44">
+<span class="eqno">(21)<a class="headerlink" href="#equation-e6b205c7-23c9-4e83-b479-35c734c4ea44" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathcal{P}_{\mathrm{fa}}(t)=-\frac{d}{dt}\int_{-\infty}^{\infty}f(x,t)\,dx=-\frac{d}{dt}\mathcal{S}(t),    
 \end{align}\]</div>
 <br>
 <p>which is a negative time derivative of the <em>survival probability</em> <span class="math notranslate nohighlight">\(\mathcal{S}(t)=\int_{-\infty}^{\infty}f(x,t)\,dx\)</span>. It is given by</p>
 <br>
-<div class="amsmath math notranslate nohighlight" id="equation-22a6c0d8-d6b9-40aa-9050-814d0955c166">
-<span class="eqno">(22)<a class="headerlink" href="#equation-22a6c0d8-d6b9-40aa-9050-814d0955c166" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a2ab9fe8-e2e4-4077-acb1-cd013f2ef73e">
+<span class="eqno">(22)<a class="headerlink" href="#equation-a2ab9fe8-e2e4-4077-acb1-cd013f2ef73e" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \mathcal{P}_{\textrm{fa}}(t)=\frac{|X-x_0|}{\sqrt{4\pi\mathcal{D}t^{3}}}\times e^{-\frac{(X-x_0)^2}{4\mathcal{D}t}}
 \end{align}\]</div>
 <br>
 <p>with the long time asymptotics, <span class="math notranslate nohighlight">\(\mathcal{P}_{\textrm{fa}}(t)\sim |X-x_0|t^{-3/2}\)</span>. Other important characteristics of searching are the <em>search reliability</em> and the <em>efficiency</em>. The search reliability is accounted as the cumulative arrival probability</p>
 <br>
-<div class="amsmath math notranslate nohighlight" id="equation-67643654-38eb-4514-98b9-ae516a4bca7c">
-<span class="eqno">(23)<a class="headerlink" href="#equation-67643654-38eb-4514-98b9-ae516a4bca7c" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-394def50-2093-43b3-aa4e-074adfd4edbc">
+<span class="eqno">(23)<a class="headerlink" href="#equation-394def50-2093-43b3-aa4e-074adfd4edbc" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathcal{E}=\left\langle\frac{1}{t}\right\rangle=\int_{0}^{\infty}\mathcal{P}_{\mathrm{fa}}(s)\,ds
 \end{align}\]</div>
 <p>which for the Brownian search is <span class="math notranslate nohighlight">\(\mathcal{P}=1\)</span>. This means that the the searcher will find the target with the probability 1, while the search efficiency,</p>
 <br>
-<div class="amsmath math notranslate nohighlight" id="equation-b5bac700-12ff-4735-8328-6f53e2631248">
-<span class="eqno">(24)<a class="headerlink" href="#equation-b5bac700-12ff-4735-8328-6f53e2631248" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1bcade3a-cfc3-49a0-b274-44f9797d5735">
+<span class="eqno">(24)<a class="headerlink" href="#equation-1bcade3a-cfc3-49a0-b274-44f9797d5735" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathcal{E}=\left\langle\frac{1}{t}\right\rangle=\int_{0}^{\infty}\mathcal{P}_{\mathrm{fa}}(s)\,ds
 \end{align}\]</div>
 <br>
 <p>represents the averaged inverse search time. Here <span class="math notranslate nohighlight">\(\mathcal{P}_{\mathrm{fa}}(s)=\mathcal{L}\left[\mathcal{P}_{\mathrm{fa}}(t)\right](s)=\int_{0}^{\infty}\wp_{\textrm{fa}}(t)e^{-st}\,dt\)</span> is the Laplace image of <span class="math notranslate nohighlight">\(\mathcal{P}_{\mathrm{fa}}(t)\)</span>. For the one-dimensional Brownian search, it is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1a6a501c-d856-49ee-ad1f-80a085c05d25">
-<span class="eqno">(25)<a class="headerlink" href="#equation-1a6a501c-d856-49ee-ad1f-80a085c05d25" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-08ad20d7-df0f-4c83-bcb9-5df24b233315">
+<span class="eqno">(25)<a class="headerlink" href="#equation-08ad20d7-df0f-4c83-bcb9-5df24b233315" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \mathcal{E}=\frac{2\mathcal{D}}{(X-x_0)^{2}}.
 \end{align}\]</div>
 </div>

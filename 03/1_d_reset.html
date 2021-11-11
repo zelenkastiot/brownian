@@ -343,8 +343,8 @@ $<span class="math notranslate nohighlight">\(
 \)</span>$</p>
 <p>with initial condition <span class="math notranslate nohighlight">\(P_{r}(x,t=0)=\delta(x-x_0)\)</span>. Here <span class="math notranslate nohighlight">\(r\)</span> is the rate of resetting to the initial position <span class="math notranslate nohighlight">\(x_0\)</span>. The last two terms of the equation represent the loss of the probability from position <span class="math notranslate nohighlight">\(x\)</span> due to the reset to the initial position, and the gain of the probability at <span class="math notranslate nohighlight">\(x_0\)</span> due to resetting from all other positions, respectively. This equation means that between any two consecutive resetting events the particle undergoes diffusion with the constant drift.</p>
 <p>This process can be simulated by using Langevin equation approach. We consider the Langevin equation in the presence of stochastic resetting to the initial position</p>
-<div class="amsmath math notranslate nohighlight" id="equation-29b830ec-0f0e-4e8a-b0b0-b1f2d7057473">
-<span class="eqno">(19)<a class="headerlink" href="#equation-29b830ec-0f0e-4e8a-b0b0-b1f2d7057473" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7e8a794f-7863-4c73-aff0-080337252375">
+<span class="eqno">(19)<a class="headerlink" href="#equation-7e8a794f-7863-4c73-aff0-080337252375" title="Permalink to this equation">¶</a></span>\[\begin{align}
 x(t+\Delta t)=\left\lbrace\begin{array}{lll}
      &amp; x(0), &amp;\textrm{with probability}\, r\Delta t,\\
      &amp; x(t)+\sqrt{2\mathcal{D}\Delta t}\,\zeta(t), &amp; \textrm{with probability}\, (1-r\Delta t).

@@ -350,30 +350,30 @@
 <h2>A. Fokker-Planck equation<a class="headerlink" href="#a-fokker-planck-equation" title="Permalink to this headline">¶</a></h2>
 <p>The Fokker-Planck equation is actually the diffusion equation in presence of external potential. It reads</p>
 <br>
-<div class="amsmath math notranslate nohighlight" id="equation-b136f0f8-8ae1-408e-b175-67cde2cfdf30">
-<span class="eqno">(8)<a class="headerlink" href="#equation-b136f0f8-8ae1-408e-b175-67cde2cfdf30" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5d251314-9ab9-4cd9-9ff6-380564878eaa">
+<span class="eqno">(8)<a class="headerlink" href="#equation-5d251314-9ab9-4cd9-9ff6-380564878eaa" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \frac{\partial}{\partial t}P(x,t)=\left[\frac{\partial}{\partial x}U'(x)+\mathcal{D}\frac{\partial^2}{\partial x^2}\right]P(x,t).
 \end{align}\]</div>
 <br>
 <p>where <span class="math notranslate nohighlight">\(U(x)\)</span> is the external potential, and correspondingly <span class="math notranslate nohighlight">\(F(x)=-U'(x)\)</span> is the external force.</p>
 <p>The corresponding Langevin equation to this Fokker-Planck equation reads</p>
 <br>
-<div class="amsmath math notranslate nohighlight" id="equation-2c351005-16c5-4d7f-a9da-05db39d47819">
-<span class="eqno">(9)<a class="headerlink" href="#equation-2c351005-16c5-4d7f-a9da-05db39d47819" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bbe60135-7616-4d2a-9319-097bdb257dad">
+<span class="eqno">(9)<a class="headerlink" href="#equation-bbe60135-7616-4d2a-9319-097bdb257dad" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \dot{x}(t)=-U'(x)+\sqrt{2\mathcal{D}}\,\xi(t).
 \end{align}\]</div>
 <br>
 <p>Consider the Fokker-Planck equation for linear external potential <span class="math notranslate nohighlight">\(U(x)=-vx\)</span>, i.e., constant external force <span class="math notranslate nohighlight">\(F=-U'(x)=v\)</span>,</p>
 <br>
-<div class="amsmath math notranslate nohighlight" id="equation-95de9e82-ae0e-49c1-9fff-1d103085eb9b">
-<span class="eqno">(10)<a class="headerlink" href="#equation-95de9e82-ae0e-49c1-9fff-1d103085eb9b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-06532dc3-3cde-4239-a420-960af3c0d72b">
+<span class="eqno">(10)<a class="headerlink" href="#equation-06532dc3-3cde-4239-a420-960af3c0d72b" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \frac{\partial}{\partial t}P(x,t)=\left[-v\frac{\partial}{\partial x}+\mathcal{D}\frac{\partial^2}{\partial x^2}\right]P(x,t).
 \end{align}\]</div>
 <br>
 <p>The solution in the infinite domain for the same initial and boundary conditions like for the diffusion equation is the Galilei-shifted Gaussian</p>
 <br>
-<div class="amsmath math notranslate nohighlight" id="equation-e94bdbfb-5bba-4111-9ce9-ffd86f82d7d3">
-<span class="eqno">(11)<a class="headerlink" href="#equation-e94bdbfb-5bba-4111-9ce9-ffd86f82d7d3" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-40c49428-1a86-4ac5-b164-39cbdae5c924">
+<span class="eqno">(11)<a class="headerlink" href="#equation-40c49428-1a86-4ac5-b164-39cbdae5c924" title="Permalink to this equation">¶</a></span>\[\begin{align}
     P(x,t)=\frac{1}{\sqrt{4\pi\mathcal{D}t}}e^{-\frac{(x-x_0-vt)^2}{4\mathcal{D}t}}.
 \end{align}\]</div>
 <br>
@@ -389,15 +389,15 @@
 </ul>
 <p>he numerical solution is done by numerical integration of the Langevin equation, i.e.,</p>
 <br>
-<div class="amsmath math notranslate nohighlight" id="equation-43b7a0ae-4c60-446b-b213-3f14794d6308">
-<span class="eqno">(12)<a class="headerlink" href="#equation-43b7a0ae-4c60-446b-b213-3f14794d6308" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0f50f6a8-4049-41a0-b482-01504b2ca137">
+<span class="eqno">(12)<a class="headerlink" href="#equation-0f50f6a8-4049-41a0-b482-01504b2ca137" title="Permalink to this equation">¶</a></span>\[\begin{align}
     x(t+\Delta t)=x(t)+v\Delta t+\sqrt{2\mathcal{D}\Delta t}\,\zeta(t).
 \end{align}\]</div>
 <br>
 <p>Mean squared displacement is given by</p>
 <br>
-<div class="amsmath math notranslate nohighlight" id="equation-beab37c8-35ca-4b78-bc1c-1238acffb84d">
-<span class="eqno">(13)<a class="headerlink" href="#equation-beab37c8-35ca-4b78-bc1c-1238acffb84d" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c784de78-1c2f-4c57-82b9-d55d367a4ed2">
+<span class="eqno">(13)<a class="headerlink" href="#equation-c784de78-1c2f-4c57-82b9-d55d367a4ed2" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \langle x^2(t)\rangle=\int_{-\infty}^{\infty}x^2 P(x,t)\,dx=\int_{-\infty}^{\infty}x^2 \frac{1}{\sqrt{4\pi\mathcal{D}t}}e^{-\frac{(x-x_0-vt)^2}{4\mathcal{D}t}}\,dx=(x_0+vt)^2+2\mathcal{D}t.
 \end{align}\]</div>
 <p>Main class for stohastic process:</p>
@@ -592,8 +592,8 @@
 <h3>B.1. Second moment, <span class="math notranslate nohighlight">\(\langle x^2(t) \rangle\)</span><a class="headerlink" href="#b-1-second-moment-langle-x-2-t-rangle" title="Permalink to this headline">¶</a></h3>
 <p>Mean squared displacement is given by
 <br></p>
-<div class="amsmath math notranslate nohighlight" id="equation-e1489b7d-cd7f-4cb9-905a-db10155baeb3">
-<span class="eqno">(14)<a class="headerlink" href="#equation-e1489b7d-cd7f-4cb9-905a-db10155baeb3" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d60712ca-46d6-4e7a-9fcf-1de18f131498">
+<span class="eqno">(14)<a class="headerlink" href="#equation-d60712ca-46d6-4e7a-9fcf-1de18f131498" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \langle x^2(t)\rangle=\int_{-\infty}^{\infty}x^2 P(x,t)\,dx=\int_{-\infty}^{\infty}x^2 \frac{1}{\sqrt{4\pi\mathcal{D}t}}e^{-\frac{(x-x_0-vt)^2}{4\mathcal{D}t}}\,dx=(x_0+vt)^2+2\mathcal{D}t.
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -678,8 +678,8 @@ Scale in case of smaler dt, scale=1.00
 <h3>B.2. PDF, <span class="math notranslate nohighlight">\(P(x,t)\)</span><a class="headerlink" href="#b-2-pdf-p-x-t" title="Permalink to this headline">¶</a></h3>
 <p><span class="math notranslate nohighlight">\(P(x,t)\)</span> is the probability density function (PDF) and <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> is diffusion coefficient, is given by the Gaussian probability density function</p>
 <br>
-<div class="amsmath math notranslate nohighlight" id="equation-d4ac3a5e-3a63-4824-8ea8-3b7a6e68eb4d">
-<span class="eqno">(15)<a class="headerlink" href="#equation-d4ac3a5e-3a63-4824-8ea8-3b7a6e68eb4d" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b341a1d0-b8a8-4158-a408-fb7f09f07346">
+<span class="eqno">(15)<a class="headerlink" href="#equation-b341a1d0-b8a8-4158-a408-fb7f09f07346" title="Permalink to this equation">¶</a></span>\[\begin{align}
     P(x,t)=\frac{1}{\sqrt{4\pi\mathcal{D}t}}e^{-\frac{(x-x_0-vt)^2}{4\mathcal{D}t}}.
 \end{align}\]</div>
 <br>
