@@ -1,0 +1,1438 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diffusion with stochastic resetting &#8212; Stochastic simulations Brownian Motion</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="One dimensional Brownian search" href="../04/1_d_search.html" />
+    <link rel="prev" title="3D backbone" href="../02/3_d_comb_1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Stochastic simulations Brownian Motion</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   About
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  1. Simple diffusion
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01/Moment_no_drift.html">
+   Brownian motion - without drift
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01/Moment_drift.html">
+   Brownian motion - with drift
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  2. Diffusion in comb
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02/comb_theory.html">
+   Backbone explained
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02/2_d_comb_1.html">
+   2D backbone
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02/3_d_comb_1.html">
+   3D backbone
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  3. Stohastic reseting
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Diffusion with stochastic resetting
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  4. Brownian search
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04/1_d_search.html">
+   One dimensional Brownian search
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/zelenkastiot/brownian">
+   GitHub repository
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://dash-brownian.herokuapp.com/">
+   Dashboard
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://www.dfg.de/">DFG</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/03/1_d_reset.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/zelenkastiot/brownian"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/zelenkastiot/brownian/issues/new?title=Issue%20on%20page%20%2F03/1_d_reset.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/zelenkastiot/brownian/edit/main/source/03/1_d_reset.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/zelenkastiot/brownian/main?urlpath=lab/tree/source/03/1_d_reset.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/drive/1oYtd0SE9Jwnm9foC6MJEdXdc2b07-7be?usp=sharing/github/zelenkastiot/brownian/blob/main/source/03/1_d_reset.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Diffusion with stochastic resetting
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-main-class">
+   A. Main class
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#b-simulate-the-resetting">
+   B. Simulate the resetting
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-1-simulate-trajectory">
+     B.1. Simulate trajectory
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-2-simulate-pdf">
+     B.2. Simulate PDF
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-3-simulate-msd">
+     B.3. Simulate MSD
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="diffusion-with-stochastic-resetting">
+<h1>Diffusion with stochastic resetting<a class="headerlink" href="#diffusion-with-stochastic-resetting" title="Permalink to this headline">¶</a></h1>
+<p><em>09-Nov-21</em></p>
+<p>Nowadays, one of the most explored problems in stochastic processes nowadays is the problem of stochastic resetting, meaning that a particle is reset to the initial (or any other) position from time to time. The one-dimensional Brownian motion with Markovian resetting with a constant resetting rate <span class="math notranslate nohighlight">\(r\)</span> is introduced by Evans and Majumdar \cite{maj1}. It was shown that the solution for the PDF, approaches a non-equilibrium steady state and in the long time limit, its MSD is saturated, <span class="math notranslate nohighlight">\(\langle x^{2}(t)\rangle\sim 1/r\)</span>, see also the review paper \cite{reset_review} for more details.</p>
+<p>The Fokker-Planck equation for a diffusion process with stochastic resetting reads
+$<span class="math notranslate nohighlight">\(
+\frac{\partial}{\partial t}P_{r}(x,t)=\mathcal{D}_{x}\frac{\partial^2}{\partial x^2}P_{r}(x,t)-rP_{r}(x,t)+r\delta(x-x_0)
+\)</span>$</p>
+<p>with initial condition <span class="math notranslate nohighlight">\(P_{r}(x,t=0)=\delta(x-x_0)\)</span>. Here <span class="math notranslate nohighlight">\(r\)</span> is the rate of resetting to the initial position <span class="math notranslate nohighlight">\(x_0\)</span>. The last two terms of the equation represent the loss of the probability from position <span class="math notranslate nohighlight">\(x\)</span> due to the reset to the initial position, and the gain of the probability at <span class="math notranslate nohighlight">\(x_0\)</span> due to resetting from all other positions, respectively. This equation means that between any two consecutive resetting events the particle undergoes diffusion with the constant drift.</p>
+<p>This process can be simulated by using Langevin equation approach. We consider the Langevin equation in the presence of stochastic resetting to the initial position</p>
+<div class="amsmath math notranslate nohighlight" id="equation-634de753-4882-4caf-aed9-2a491e77aca7">
+<span class="eqno">(19)<a class="headerlink" href="#equation-634de753-4882-4caf-aed9-2a491e77aca7" title="Permalink to this equation">¶</a></span>\[\begin{align}
+x(t+\Delta t)=\left\lbrace\begin{array}{lll}
+     &amp; x(0), &amp;\textrm{with probability}\, r\Delta t,\\
+     &amp; x(t)+\sqrt{2\mathcal{D}\Delta t}\,\zeta(t), &amp; \textrm{with probability}\, (1-r\Delta t).
+\end{array} \right.
+\end{align}\]</div>
+<br>
+<p>where <span class="math notranslate nohighlight">\(\zeta(t)\)</span> is a zero mean Gaussian noise, and <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> and <span class="math notranslate nohighlight">\(r\)</span> are diffusion coefficient and resetting rate, respectively. This effect of stochastic resetting is modeled by sampling a resetting time from an exponential distribution with parameter <span class="math notranslate nohighlight">\(r\)</span> representing the time between two events in a Poisson point process. During this resetting time, the particle undergoes free diffusion and resets at <span class="math notranslate nohighlight">\(x_0\)</span> afterward.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="a-main-class">
+<h1>A. Main class<a class="headerlink" href="#a-main-class" title="Permalink to this headline">¶</a></h1>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd"> </span>
+<span class="sd">    Created on 27-Oct-2021</span>
+<span class="sd">    @author: zelenkastiot</span>
+<span class="sd">    </span>
+<span class="sd">    bm-speed: </span>
+
+<span class="sd"> &quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="p">(</span><span class="n">AutoMinorLocator</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">gamma</span>
+<span class="kn">import</span> <span class="nn">psutil</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
+
+<span class="c1"># Get number of CPU cores</span>
+<span class="n">num_cpus</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">(</span><span class="n">logical</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="c1"># Specifying the figure parameters</span>
+<span class="n">font</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;family&#39;</span><span class="p">:</span> <span class="s1">&#39;serif&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="s1">&#39;normal&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span>
+        <span class="p">}</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;legend.fontsize&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+          <span class="s1">&#39;legend.handlelength&#39;</span><span class="p">:</span> <span class="mf">2.</span><span class="p">}</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+<span class="n">reset_points</span> <span class="o">=</span> <span class="p">[]</span>
+
+
+<span class="c1"># Brownian motion stochastic process</span>
+<span class="k">class</span> <span class="nc">BrownianMotionLangevin</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class contains methods that solve different variations of the Brownian motion stochastic process:</span>
+<span class="sd">        *time_1d_reset   -  1D Brownian motion, Langevin Eq., with stochastic resetting</span>
+<span class="sd">        *time_1d_regular -  1D Brownian motion, Langevin Eq., no stochastic resetting</span>
+<span class="sd">        *time_2d_regular -  2D Brownian motion, 2D comb, Langevin Eq., no stochastic resetting</span>
+<span class="sd">        *time_3d_regular -  3D Brownian motion, 3D comb, Langevin Eq., no stochastic resetting</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Function for validating # of coefficients</span>
+    <span class="k">def</span> <span class="nf">check_coefficients</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diffusion_coefficients</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Simple input check for # of diffusion coefficients.</span>
+<span class="sd">        If not valid (logical) raises warning with message</span>
+
+<span class="sd">        :param diffusion_coefficients: List of dc</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_type</span> <span class="o">==</span> <span class="s1">&#39;1d&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">diffusion_coefficients</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_x</span> <span class="o">=</span> <span class="n">diffusion_coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;You must have one (Dx) diffusion coefficient!&quot;</span>
+                <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_type</span> <span class="o">==</span> <span class="s1">&#39;2d&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">diffusion_coefficients</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_x</span> <span class="o">=</span> <span class="n">diffusion_coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_y</span> <span class="o">=</span> <span class="n">diffusion_coefficients</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;You must have exactly two (Dx, Dy) diffusion coefficients!&quot;</span>
+                <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_type</span> <span class="o">==</span> <span class="s1">&#39;3d&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">diffusion_coefficients</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_x</span> <span class="o">=</span> <span class="n">diffusion_coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_y</span> <span class="o">=</span> <span class="n">diffusion_coefficients</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_z</span> <span class="o">=</span> <span class="n">diffusion_coefficients</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;You must have exactly three (Dx, Dy, Dz) diffusion coefficients!&quot;</span>
+                <span class="p">)</span>
+
+    <span class="c1"># A(y): Mimicking the Dirac-delta function on axis Y</span>
+    <span class="k">def</span> <span class="nf">a_dirac</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Mimicking the Dirac-delta function on axis Y</span>
+
+<span class="sd">        :param self: Brownian motion object</span>
+<span class="sd">        :param y   - value we are interested in ~ A(y)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Calculate A(y)</span>
+        <span class="n">f1</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">y</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span>
+        <span class="c1"># Return the square (since we use it inside the square root)</span>
+        <span class="k">return</span> <span class="n">f1</span> <span class="o">**</span> <span class="mf">0.5</span>
+
+    <span class="c1"># B(z): Mimicking the Dirac-delta function on axis Z</span>
+    <span class="k">def</span> <span class="nf">b_dirac</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Mimicking the Dirac-delta function on axis Z</span>
+
+<span class="sd">        :param self: Brownian motion object</span>
+<span class="sd">        :param z   - value we are interested in ~ B(z)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Calculate A(y)</span>
+        <span class="n">f2</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span>
+        <span class="c1"># Return the square (since we use it inside the square root)</span>
+        <span class="k">return</span> <span class="n">f2</span> <span class="o">**</span> <span class="mf">0.5</span>
+
+    <span class="c1"># Special case: Returns the reset points for 1D Brownian motion with stochastic resetting</span>
+    <span class="k">def</span> <span class="nf">time_1d_reset_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># prob_reset = self.reset_rate * self.dt</span>
+        <span class="n">prob_reset</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">expovariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reset_rate</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>
+        <span class="c1"># Define the solution as [dimension, time] (in this case 1)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">times</span><span class="p">)))</span>
+        <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_pos</span>
+
+        <span class="c1"># Loop over time</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">times</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="c1"># step = np.random.uniform(0, 1)</span>
+
+            <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="n">prob_reset</span><span class="p">:</span>
+                <span class="n">s</span><span class="p">[</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">prob_reset</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">expovariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reset_rate</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span> <span class="o">+</span> <span class="n">t</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">reset_points</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dwx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">drift</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">sqrt_2Dx</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sqrt_dt</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">()</span>
+                <span class="n">s</span><span class="p">[</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">dwx</span>
+
+        <span class="k">return</span> <span class="n">s</span>
+
+    <span class="c1"># 1st: Function for enhancing speed</span>
+    <span class="k">def</span> <span class="nf">time_1d_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="c1"># prob_reset = self.reset_rate * self.dt</span>
+        <span class="n">prob_reset</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">expovariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reset_rate</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>
+        <span class="c1"># Define the solution as [dimension, time] (in this case 1)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">times</span><span class="p">)))</span>
+        <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_pos</span>
+
+        <span class="c1"># Loop over time</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">times</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="c1"># step = np.random.uniform(0, 1)</span>
+
+            <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="n">prob_reset</span><span class="p">:</span>
+                <span class="n">s</span><span class="p">[</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">prob_reset</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">expovariate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reset_rate</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span> <span class="o">+</span> <span class="n">t</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dwx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">drift</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">sqrt_2Dx</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sqrt_dt</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">()</span>
+                <span class="n">s</span><span class="p">[</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">dwx</span>
+
+        <span class="k">return</span> <span class="n">s</span>
+
+    <span class="c1"># 2nd: Function for enhancing speed</span>
+    <span class="k">def</span> <span class="nf">time_1d_regular</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">times</span><span class="p">)))</span>
+
+        <span class="c1"># Loop over time</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">times</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">s</span><span class="p">[</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">drift</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">sqrt_2Dx</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sqrt_dt</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">s</span>
+
+    <span class="c1"># 3rd: Function for enhancing speed</span>
+    <span class="k">def</span> <span class="nf">time_2d_regular</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="c1"># Define the solution as [dimension, time] (in this case 2)</span>
+        <span class="n">s2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">times</span><span class="p">)))</span>
+
+        <span class="c1"># Loop over time</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">times</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="c1"># Calculate white gaussian noise ~ (2*Dc*dt)^0.5 * N(0, 1)</span>
+            <span class="n">dwx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sqrt_2Dx</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sqrt_dt</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">()</span>
+            <span class="n">dwy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sqrt_2Dy</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sqrt_dt</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">()</span>
+
+            <span class="c1"># Y - axis: Langevin eq. y[t + 1] = y[t] + (2*Dy*dt)^0.5 * N(0, 1)</span>
+            <span class="n">s2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">s2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">dwx</span>
+            <span class="c1"># X - axis: Langevin eq. x[t + 1] = x[t] + A(y[t])*(2*Dy*dt)^0.5 * N(0, 1)</span>
+            <span class="n">s2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">s2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">a_dirac</span><span class="p">(</span><span class="n">s2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">t</span><span class="p">])</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_dirac</span><span class="p">(</span><span class="n">s2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]))</span> <span class="o">*</span> <span class="n">dwy</span>
+
+        <span class="k">return</span> <span class="n">s2</span>
+
+    <span class="c1"># 4th: Function for enhancing speed</span>
+    <span class="k">def</span> <span class="nf">time_3d_regular</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="n">s3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">times</span><span class="p">)))</span>
+
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">times</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="c1"># Calculate white gaussian noise ~ (2*Dc*dt)^0.5 * N(0, 1)</span>
+            <span class="n">dwx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sqrt_2Dx</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sqrt_dt</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">()</span>
+            <span class="n">dwy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sqrt_2Dy</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sqrt_dt</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">()</span>
+            <span class="n">dwz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sqrt_2Dz</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sqrt_dt</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">()</span>
+
+            <span class="c1"># Z - axis: Langevin eq. z[t + 1] = z[t] + dwz</span>
+            <span class="n">s3</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">s3</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">dwz</span>
+            <span class="c1"># Y - axis: Langevin eq. y[t + 1] = y[t] + 0.5 * (B(z[t]) + B(z[t + 1]) * dwy</span>
+            <span class="n">s3</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">s3</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">b_dirac</span><span class="p">(</span><span class="n">s3</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="n">t</span><span class="p">])</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b_dirac</span><span class="p">(</span><span class="n">s3</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]))</span> <span class="o">*</span> <span class="n">dwy</span>
+            <span class="c1"># X - axis: Langevin eq. x[t + 1] = x[t] + 0.5 * { A(y[t]) * B(z[t]) + A(y[t+1]) * B(z[t+1]) } * dwx</span>
+            <span class="n">s3</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">s3</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">a_dirac</span><span class="p">(</span><span class="n">s3</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">t</span><span class="p">])</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">b_dirac</span><span class="p">(</span><span class="n">s3</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="n">t</span><span class="p">])</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_dirac</span><span class="p">(</span><span class="n">s3</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">b_dirac</span><span class="p">(</span>
+                <span class="n">s3</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]))</span> <span class="o">*</span> <span class="n">dwx</span>
+
+        <span class="k">return</span> <span class="n">s3</span>
+
+    <span class="c1"># Solving 1D</span>
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Regular Brownian Motion</span>
+
+<span class="sd">        Generates all step based the definition for BM, using 2 different approaches.</span>
+<span class="sd">        Both draw from a Normal Distribution ~ N(0, dt); If dt=1, it is N(0, 1)</span>
+
+<span class="sd">        B = B0 + B1*dB1 + ... Bn*dBn = x + v*dt + (2*Dc*dt)^1/2 * N(0, dt)</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reset_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Run ensemble</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------------Started calculating ensemble (1D, RESET)---------------&quot;</span><span class="p">)</span>
+            <span class="n">pool</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+            <span class="n">monte_carlo1d</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+                <span class="n">tqdm</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">imap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time_1d_reset</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span><span class="p">)),</span> <span class="n">total</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span><span class="p">))</span>
+            <span class="n">pool</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">monte_carlo1d</span><span class="p">))</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Run ensemble</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------------Started calculating ensemble (1D, NO RESET)------------&quot;</span><span class="p">)</span>
+            <span class="n">pool</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_cores</span><span class="p">)</span>
+            <span class="n">monte_carlo1d</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+                <span class="n">tqdm</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">imap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time_1d_regular</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span><span class="p">)),</span> <span class="n">total</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span><span class="p">))</span>
+            <span class="n">pool</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+
+        <span class="c1"># Append solution</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">solution</span> <span class="o">=</span> <span class="n">monte_carlo1d</span>
+
+    <span class="c1"># Solving 2D</span>
+    <span class="k">def</span> <span class="nf">solve2d</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Backbone solution - 2d</span>
+
+<span class="sd">        Generates all step based the definition of the backbone.</span>
+<span class="sd">        - 1st dimension [x] - non-Brownian variable; distribution of waiting</span>
+<span class="sd">        - 2nd dimension [y] - Brownian motion variable</span>
+
+<span class="sd">        Returns the 2D solution of shape (dimension)(values at t time)</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reset_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Run ensemble</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----- WORK IN PROGRESS ----&quot;</span><span class="p">)</span>
+            <span class="n">monte_carlo2d</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Run ensemble</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------------Started calculating ensemble (2D, NO RESET)------------&quot;</span><span class="p">)</span>
+
+            <span class="n">pool</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_cores</span><span class="p">)</span>
+            <span class="n">monte_carlo2d</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+                <span class="n">tqdm</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">imap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time_2d_regular</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span><span class="p">)),</span> <span class="n">total</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span><span class="p">))</span>
+            <span class="n">pool</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+
+        <span class="c1"># Append solution</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">solution</span> <span class="o">=</span> <span class="n">monte_carlo2d</span>
+
+    <span class="c1"># Solving 3D</span>
+    <span class="k">def</span> <span class="nf">solve3d</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Backbone solution - 3d</span>
+
+<span class="sd">        Generates all step based the definition of the backbone.</span>
+<span class="sd">        - 1st dimension [x] - non-Brownian variable - 1; distribution of waiting</span>
+<span class="sd">        - 2nd dimension [y] - non-Brownian variable - 2; distribution of waiting</span>
+<span class="sd">        - 3rd dimension [z] - Brownian motion variable</span>
+
+<span class="sd">        Returns the 2D solution of shape (dimension)(values at t time)</span>
+
+<span class="sd">        :return: r</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reset_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Run ensemble</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----- WORK IN PROGRESS ----&quot;</span><span class="p">)</span>
+            <span class="n">monte_carlo3d</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Run ensemble</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----- Started calculating ensemble (3D, NO RESET) ----&quot;</span><span class="p">)</span>
+
+            <span class="n">pool</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_cores</span><span class="p">)</span>
+            <span class="n">monte_carlo3d</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+                <span class="n">tqdm</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">imap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time_3d_regular</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span><span class="p">)),</span> <span class="n">total</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span><span class="p">))</span>
+            <span class="n">pool</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">solution</span> <span class="o">=</span> <span class="n">monte_carlo3d</span>
+
+    <span class="c1"># Functions that runs ensemble using multiprocessing</span>
+    <span class="k">def</span> <span class="nf">run_ensemble</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># 1d - regular BM</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_type</span> <span class="o">==</span> <span class="s1">&#39;1d&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+
+        <span class="c1"># 2d - 2d comb BM</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_type</span> <span class="o">==</span> <span class="s1">&#39;2d&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">solve2d</span><span class="p">()</span>
+
+        <span class="c1"># 3d - 3d comb BM</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_type</span> <span class="o">==</span> <span class="s1">&#39;3d&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">solve3d</span><span class="p">()</span>
+
+        <span class="c1"># No valid options</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Invalid option for &#39;ensemble type&#39;!&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">    Options are:&quot;</span><span class="p">,</span>
+                <span class="s2">&quot; - &#39;1d&#39;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;</span><span class="se">\n\t\t</span><span class="s2">         - &#39;2d&#39;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;</span><span class="se">\n\t\t</span><span class="s2">         - &#39;3d&#39;&quot;</span>
+            <span class="p">)</span>
+
+    <span class="c1"># plt_traj==True: Plots trajectories</span>
+    <span class="k">def</span> <span class="nf">plot_trajectories</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reset_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># DONE</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_type</span> <span class="o">==</span> <span class="s1">&#39;1d&#39;</span><span class="p">:</span>
+                <span class="c1"># Matplotlib subplot</span>
+                <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax0</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+
+                <span class="c1"># Get parameters</span>
+                <span class="n">dif_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_x</span>
+                <span class="n">rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reset_rate</span>
+                <span class="n">dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_1d_reset_plot</span><span class="p">()</span>
+                <span class="c1"># print(self.reset_points)</span>
+
+                <span class="c1"># Plot the two axis</span>
+                <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation_time</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>
+
+                <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+
+                <span class="c1"># X-axis</span>
+                <span class="n">ax0</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reset_points</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reset_points</span><span class="p">)),</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">ax0</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#045a8d&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">ax0</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;time, $t$&#39;</span><span class="p">)</span>
+                <span class="n">ax0</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x(t)$&#39;</span><span class="p">)</span>
+                <span class="n">ax0</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s2">&quot;in&quot;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation_time</span> <span class="o">==</span> <span class="mi">10_000</span><span class="p">:</span>
+                    <span class="n">ax0</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span>
+                        <span class="p">[</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;2$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;4$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;6$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;8$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$10^4$&quot;</span><span class="p">])</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation_time</span> <span class="o">==</span> <span class="mi">100_000</span><span class="p">:</span>
+                    <span class="n">ax0</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span>
+                        <span class="p">[</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;2$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;4$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;6$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;8$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$10^5$&quot;</span><span class="p">])</span>
+
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reset_points</span><span class="p">)):</span>
+                    <span class="n">fill_color</span> <span class="o">=</span> <span class="s1">&#39;#e5eef3&#39;</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s1">&#39;white&#39;</span>
+
+                    <span class="n">first</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reset_points</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                    <span class="n">last</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation_time</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reset_points</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">reset_points</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+
+                    <span class="n">ax0</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">fill_color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+                <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation_time</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
+                    <span class="sa">r</span><span class="s2">&quot;Trajectory for X, stochastic reset $\mathcal</span><span class="si">{D}</span><span class="s2">_x=$&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dif_x</span><span class="si">}</span><span class="s2">, &quot;</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;$r=$</span><span class="si">{rate}</span><span class="s2">, $\Delta t=$</span><span class="si">{dt}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">rate</span><span class="o">=</span><span class="n">rate</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="c1"># plt.savefig(&quot;Trajectory.png&quot;)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_type</span> <span class="o">==</span> <span class="s1">&#39;2d&#39;</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*-*-*-*-*-*-*-*- NOT CREATED *-*-*-*-*-*-*-*-*-*-&quot;</span><span class="p">)</span>
+
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_type</span> <span class="o">==</span> <span class="s1">&#39;3d&#39;</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*-*-*-*-*-*-*-*- NOT CREATED *-*-*-*-*-*-*-*-*-*-&quot;</span><span class="p">)</span>
+
+        <span class="c1"># No stochastic reset</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># DONE</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_type</span> <span class="o">==</span> <span class="s1">&#39;1d&#39;</span><span class="p">:</span>
+                <span class="c1"># Matplotlib subplot</span>
+                <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax0</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+                <span class="n">dif_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_x</span>
+                <span class="n">dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span>
+                <span class="n">motions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">solution</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">motions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+                <span class="c1"># Plot the two axis</span>
+                <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation_time</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+
+                <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+
+                <span class="n">ax0</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#045a8d&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">ax0</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;time, $t$&#39;</span><span class="p">)</span>
+                <span class="n">ax0</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x(t)$&#39;</span><span class="p">)</span>
+                <span class="n">ax0</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s2">&quot;in&quot;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation_time</span> <span class="o">==</span> <span class="mi">10_000</span><span class="p">:</span>
+                    <span class="n">ax0</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span>
+                        <span class="p">[</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;2$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;4$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;6$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;8$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$10^4$&quot;</span><span class="p">])</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation_time</span> <span class="o">==</span> <span class="mi">100_000</span><span class="p">:</span>
+                    <span class="n">ax0</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span>
+                        <span class="p">[</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;2$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;4$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;6$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;8$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$10^5$&quot;</span><span class="p">])</span>
+
+                <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation_time</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Trajectory for X; $\mathcal</span><span class="si">{D}</span><span class="s2">_x=$&quot;</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;</span><span class="si">{Dc}</span><span class="s2">, $\Delta t=$</span><span class="si">{dt}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Dc</span><span class="o">=</span><span class="n">dif_x</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">),</span>
+                          <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="c1"># plt.savefig(&quot;Trajectory-1d-no-reset.png&quot;)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+            <span class="c1"># DONE</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_type</span> <span class="o">==</span> <span class="s1">&#39;2d&#39;</span><span class="p">:</span>
+                <span class="c1"># Matplotlib subplot</span>
+                <span class="n">figure</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+
+                <span class="c1"># Pick random motion from ensemble; Plot both trajectories</span>
+                <span class="n">motions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">solution</span>
+                <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">motions</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">rand_motion</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">motions</span><span class="p">[</span><span class="n">rand_motion</span><span class="p">]</span>
+
+                <span class="c1"># Get parameters from ensemble</span>
+                <span class="n">dif_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_x</span>
+                <span class="n">Dcy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_y</span>
+                <span class="n">dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span>
+                <span class="n">total_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation_time</span>
+                <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_time</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+                <span class="c1"># X(t)</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#346751&quot;</span><span class="p">)</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;time, $t$&#39;</span><span class="p">)</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x(t)$&#39;</span><span class="p">)</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\mathcal</span><span class="si">{D}</span><span class="s2">_x=$&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dif_x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_time</span><span class="p">)</span>
+
+                <span class="c1"># Y(t)</span>
+                <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#346751&quot;</span><span class="p">)</span>
+                <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;time, $t$&#39;</span><span class="p">)</span>
+                <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$y(t)$&#39;</span><span class="p">)</span>
+                <span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+                <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\mathcal</span><span class="si">{D}</span><span class="s2">_y=$&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">Dcy</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+                <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_time</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation_time</span> <span class="o">==</span> <span class="mi">10_000</span><span class="p">:</span>
+                    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span>
+                        <span class="p">[</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;2$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;4$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;6$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;8$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$10^4$&quot;</span><span class="p">])</span>
+                    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span>
+                        <span class="p">[</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;2$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;4$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;6$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;8$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$10^4$&quot;</span><span class="p">])</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation_time</span> <span class="o">==</span> <span class="mi">100_000</span><span class="p">:</span>
+                    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span>
+                        <span class="p">[</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;2$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;4$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;6$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;8$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$10^5$&quot;</span><span class="p">])</span>
+                    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span>
+                        <span class="p">[</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;2$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;4$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;6$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;8$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$10^5$&quot;</span><span class="p">])</span>
+
+                <span class="c1"># Final touches</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Trajectories for $X,Y$; $\Delta t=$</span><span class="si">{dt}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="c1"># plt.savefig(&quot;Trajectories-2d-no-reset.png&quot;)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+            <span class="c1"># DONE</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_type</span> <span class="o">==</span> <span class="s1">&#39;3d&#39;</span><span class="p">:</span>
+                <span class="c1"># Matplotlib subplot</span>
+                <span class="n">figure</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+                <span class="c1"># Pick random motion from ensemble; Plot both trajectories</span>
+                <span class="n">motions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">solution</span>
+                <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">motions</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">rand_motion</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">motions</span><span class="p">[</span><span class="n">rand_motion</span><span class="p">]</span>
+
+                <span class="c1"># Get parameters from ensemble</span>
+                <span class="n">dif_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_x</span>
+                <span class="n">Dcy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_y</span>
+                <span class="n">Dcz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_z</span>
+                <span class="n">dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span>
+                <span class="n">total_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation_time</span>
+                <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_time</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+                <span class="c1"># X(t)</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#346751&quot;</span><span class="p">)</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;time, $t$&#39;</span><span class="p">)</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x(t)$&#39;</span><span class="p">)</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\mathcal</span><span class="si">{D}</span><span class="s2">_x=$&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dif_x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_time</span><span class="p">)</span>
+
+                <span class="c1"># Y(t)</span>
+                <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#346751&quot;</span><span class="p">)</span>
+                <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;time, $t$&#39;</span><span class="p">)</span>
+                <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$y(t)$&#39;</span><span class="p">)</span>
+                <span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+                <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\mathcal</span><span class="si">{D}</span><span class="s2">_y=$&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">Dcy</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+                <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_time</span><span class="p">)</span>
+
+                <span class="c1"># Z(t)</span>
+                <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#346751&quot;</span><span class="p">)</span>
+                <span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;time, $t$&#39;</span><span class="p">)</span>
+                <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$z(t)$&#39;</span><span class="p">)</span>
+                <span class="n">ax3</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+                <span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\mathcal</span><span class="si">{D}</span><span class="s2">_z=$&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">Dcz</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+                <span class="n">ax3</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_time</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation_time</span> <span class="o">==</span> <span class="mi">10_000</span><span class="p">:</span>
+                    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span>
+                        <span class="p">[</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;2$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;4$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;6$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;8$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$10^4$&quot;</span><span class="p">])</span>
+                    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span>
+                        <span class="p">[</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;2$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;4$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;6$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;8$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$10^4$&quot;</span><span class="p">])</span>
+                    <span class="n">ax3</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span>
+                        <span class="p">[</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;2$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;4$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;6$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;8$\times 10^3$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$10^4$&quot;</span><span class="p">])</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation_time</span> <span class="o">==</span> <span class="mi">100_000</span><span class="p">:</span>
+                    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span>
+                        <span class="p">[</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;2$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;4$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;6$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;8$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$10^5$&quot;</span><span class="p">])</span>
+                    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span>
+                        <span class="p">[</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;2$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;4$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;6$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;8$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$10^5$&quot;</span><span class="p">])</span>
+                    <span class="n">ax3</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span>
+                        <span class="p">[</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;2$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;4$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;6$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;8$\times 10^4$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$10^5$&quot;</span><span class="p">])</span>
+
+                <span class="c1"># Final touches</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Trajectories for $X$, $Y$ and $Z$ for random particle; $\Delta t=$</span><span class="si">{dt}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">),</span>
+                             <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="c1"># plt.savefig(&quot;Trajectories-2d-no-reset.png&quot;)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="c1"># plt_msd==True: Plots MSD</span>
+    <span class="k">def</span> <span class="nf">plot_msd</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Stochastic resetting</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reset_rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># DONE</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_type</span> <span class="o">==</span> <span class="s1">&#39;1d&#39;</span><span class="p">:</span>
+
+                <span class="n">dist_x</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span><span class="p">):</span>
+                    <span class="n">dist_x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">solution</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+                <span class="c1"># Define global time of ensemble</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation_time</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>
+
+                <span class="c1"># Calculate MSD Simulation --------------- X</span>
+                <span class="n">no_simulations</span><span class="p">,</span> <span class="n">no_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">dist_x</span><span class="p">)</span>
+                <span class="n">msd_s</span> <span class="o">=</span> <span class="p">[]</span>
+
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--------Started calculating MSD, X, stochastic resetting--------&quot;</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">no_points</span><span class="p">)):</span>
+                    <span class="n">value_x</span> <span class="o">=</span> <span class="p">[</span><span class="n">dist_x</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span><span class="p">)]</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">value_x</span><span class="p">,</span> <span class="n">value_x</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span>  <span class="c1"># dot product / ensemble size</span>
+                    <span class="n">msd_s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+                <span class="c1"># Theoretical vs. Ensemble</span>
+                <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
+
+                <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">AutoMinorLocator</span><span class="p">())</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">AutoMinorLocator</span><span class="p">())</span>
+
+                <span class="c1"># MSD - analytical: No resetting</span>
+                <span class="n">msd_t</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_x</span> <span class="o">*</span> <span class="n">x</span>
+                <span class="c1"># ax.plot(x, msd_t, linewidth=1, alpha=0.8, label=r&quot;$2\mathcal{D}_xt$&quot;, color=&quot;orange&quot;, linestyle=&#39;-&#39;)</span>
+
+                <span class="c1"># MSD - analytical: With resetting rate r</span>
+                <span class="n">msd_a</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_x</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">reset_rate</span> <span class="o">*</span> <span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">reset_rate</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">msd_a</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Analytical, $2\mathcal</span><span class="si">{D}</span><span class="s2">_x\frac{1-e^{-rt}}</span><span class="si">{r}</span><span class="s2">$&quot;</span><span class="p">,</span>
+                        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+
+                <span class="c1"># Plot simulation</span>
+                <span class="n">markers_on</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">100000</span><span class="p">])</span>
+                <span class="n">markers_on</span> <span class="o">=</span> <span class="n">markers_on</span><span class="p">[</span><span class="n">markers_on</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation_time</span> <span class="o">+</span> <span class="mi">10</span><span class="p">]</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">msd_s</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+                        <span class="n">markevery</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">markers_on</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Simulation, reset&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#045a8d&quot;</span><span class="p">)</span>
+
+                <span class="c1"># Add legend if comparing values</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span>
+                           <span class="n">fancybox</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                           <span class="n">shadow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                           <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;x-small&#39;</span><span class="p">)</span>
+
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+
+                <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\langle x^2(t) \rangle$&quot;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;time, $t$&quot;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;MSD; $\langle x^2(t) \rangle$&quot;</span> <span class="o">+</span> <span class="s2">&quot;$; r=$</span><span class="si">{rate}</span><span class="s2">, $\Delta t=$</span><span class="si">{dt}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">rate</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reset_rate</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mf">1.9</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s2">&quot;in&quot;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="c1"># plt.savefig(&quot;MSD-reset-1d.png&quot;)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_type</span> <span class="o">==</span> <span class="s1">&#39;2d&#39;</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_type</span> <span class="o">==</span> <span class="s1">&#39;3d&#39;</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+        <span class="c1"># No resetting</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># DONE</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_type</span> <span class="o">==</span> <span class="s1">&#39;1d&#39;</span><span class="p">:</span>
+
+                <span class="n">dist_x</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+                    <span class="n">dist_x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">solution</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">-------------------MSD, no stochastic resetting---------------------&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dist. for X has shape: </span><span class="si">{x}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">dist_x</span><span class="p">)))</span>
+
+                <span class="c1"># Calculate MSD Simulation --------------- X</span>
+                <span class="n">no_simulations</span><span class="p">,</span> <span class="n">no_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">dist_x</span><span class="p">)</span>
+                <span class="n">msd_s</span> <span class="o">=</span> <span class="p">[]</span>
+
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---------Started calculating MSD, X, no stochastic resetting--------&quot;</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">no_points</span><span class="p">)):</span>
+                    <span class="n">value_x</span> <span class="o">=</span> <span class="p">[</span><span class="n">dist_x</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span><span class="p">)]</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">value_x</span><span class="p">,</span> <span class="n">value_x</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span>  <span class="c1"># dot product / ensemble size</span>
+                    <span class="n">msd_s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+                <span class="c1"># Theoretical vs. Ensemble</span>
+                <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
+
+                <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">AutoMinorLocator</span><span class="p">())</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">AutoMinorLocator</span><span class="p">())</span>
+
+                <span class="c1"># Define global time of ensemble</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation_time</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+                <span class="c1"># MSD - analytical: No resetting</span>
+                <span class="n">msd_t</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_x</span> <span class="o">*</span> <span class="n">x</span>
+
+                <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">msd_t</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$2\mathcal</span><span class="si">{D}</span><span class="s2">_xt$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#2C2891&quot;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">msd_s</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Simulation, no reset&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FB9300&#39;</span><span class="p">)</span>
+
+                <span class="c1"># Add legend if comparing values</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span>
+                           <span class="n">fancybox</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                           <span class="n">shadow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                           <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;x-small&#39;</span><span class="p">)</span>
+
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+
+                <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\langle x^2(t) \rangle$&quot;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;time, $t$&quot;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;MSD; $\langle x^2(t) \rangle$; &quot;</span> <span class="o">+</span> <span class="s2">&quot;$\Delta t=$</span><span class="si">{dt}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mf">1.9</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s2">&quot;in&quot;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="c1"># plt.savefig(&quot;MSD-no-reset-1d.png&quot;)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+            <span class="c1"># DONE</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_type</span> <span class="o">==</span> <span class="s1">&#39;2d&#39;</span><span class="p">:</span>
+                <span class="n">dist_x</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">dist_y</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span><span class="p">):</span>
+                    <span class="n">dist_x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">solution</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+                    <span class="n">dist_y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">solution</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">-------------------MSD, no stochastic resetting---------------------&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dist. for X has shape: </span><span class="si">{x}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">dist_x</span><span class="p">)))</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dist. for Y has shape: </span><span class="si">{y}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">dist_y</span><span class="p">)))</span>
+
+                <span class="c1"># Calculate MSD for X</span>
+                <span class="n">no_simulations</span><span class="p">,</span> <span class="n">no_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">dist_x</span><span class="p">)</span>
+                <span class="n">msd_x</span> <span class="o">=</span> <span class="p">[]</span>
+
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---------Started calculating MSD, X, no stochastic resetting--------&quot;</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">no_points</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)):</span>
+                    <span class="n">value_x</span> <span class="o">=</span> <span class="p">[</span><span class="n">dist_x</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span><span class="p">)]</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">value_x</span><span class="p">,</span> <span class="n">value_x</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span>  <span class="c1"># dot product / ensemble size</span>
+                    <span class="n">msd_x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+                <span class="c1"># Calculate MSD for Y</span>
+                <span class="n">no_simulations</span><span class="p">,</span> <span class="n">no_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">dist_y</span><span class="p">)</span>
+                <span class="n">msd_y</span> <span class="o">=</span> <span class="p">[]</span>
+
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---------Started calculating MSD, Y, no stochastic resetting--------&quot;</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">no_points</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)):</span>
+                    <span class="n">value_y</span> <span class="o">=</span> <span class="p">[</span><span class="n">dist_y</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span><span class="p">)]</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">value_y</span><span class="p">,</span> <span class="n">value_y</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span>  <span class="c1"># dot product / ensemble size</span>
+                    <span class="n">msd_y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+                <span class="c1"># Theoretical vs. Ensemble</span>
+                <span class="n">figure</span><span class="p">,</span> <span class="p">(</span><span class="n">ax</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+
+                <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">AutoMinorLocator</span><span class="p">())</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">AutoMinorLocator</span><span class="p">())</span>
+
+                <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation_time</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+                <span class="n">factor</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_x</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_y</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)</span>
+
+                <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">factor</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)(</span><span class="n">x</span><span class="p">),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+                        <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Theory, X, $t^{1/2}$&quot;</span><span class="p">,</span>
+                        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#2C2891&quot;</span><span class="p">)</span>
+
+                <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">msd_x</span><span class="p">,</span> <span class="s1">&#39;#FB9300&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Simulation, X&quot;</span><span class="p">,</span>
+                        <span class="n">markevery</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+                <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_y</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">1</span><span class="p">)(</span><span class="n">x</span><span class="p">),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+                        <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Theory, Y, $t^1$&quot;</span><span class="p">,</span>
+                        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#2C2891&quot;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">msd_y</span><span class="p">,</span> <span class="s1">&#39;#FB9300&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Simulation, Y&quot;</span><span class="p">,</span>
+                        <span class="n">markevery</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+                <span class="c1"># Add legend if comparing values</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span>
+                           <span class="n">fancybox</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                           <span class="n">shadow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                           <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;x-small&#39;</span><span class="p">)</span>
+
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+
+                <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;time, $t$&quot;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;MSD; $\langle x^2(t)\rangle,\langle y^2(t)\rangle$&quot;</span><span class="p">,</span>
+                          <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mf">1.9</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s2">&quot;in&quot;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+            <span class="c1"># DONE</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_type</span> <span class="o">==</span> <span class="s1">&#39;3d&#39;</span><span class="p">:</span>
+                <span class="n">dist_x</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">dist_y</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">dist_z</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span><span class="p">):</span>
+                    <span class="n">dist_x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">solution</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+                    <span class="n">dist_y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">solution</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+                    <span class="n">dist_z</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">solution</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
+
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">-------------------MSD, no stochastic resetting---------------------&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dist. for X has shape: </span><span class="si">{x}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">dist_x</span><span class="p">)))</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dist. for Y has shape: </span><span class="si">{y}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">dist_y</span><span class="p">)))</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dist. for Z has shape: </span><span class="si">{z}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">dist_z</span><span class="p">)))</span>
+
+                <span class="c1"># Calculate MSD for X</span>
+                <span class="n">no_simulations</span><span class="p">,</span> <span class="n">no_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">dist_x</span><span class="p">)</span>
+                <span class="n">msd_x</span> <span class="o">=</span> <span class="p">[]</span>
+
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---------Started calculating MSD, X, no stochastic resetting--------&quot;</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">no_points</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)):</span>
+                    <span class="n">value_x</span> <span class="o">=</span> <span class="p">[</span><span class="n">dist_x</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span><span class="p">)]</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">value_x</span><span class="p">,</span> <span class="n">value_x</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span>  <span class="c1"># dot product / ensemble size</span>
+                    <span class="n">msd_x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+                <span class="c1"># Calculate MSD for Y</span>
+                <span class="n">no_simulations</span><span class="p">,</span> <span class="n">no_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">dist_y</span><span class="p">)</span>
+                <span class="n">msd_y</span> <span class="o">=</span> <span class="p">[]</span>
+
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---------Started calculating MSD, Y, no stochastic resetting--------&quot;</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">no_points</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)):</span>
+                    <span class="n">value_y</span> <span class="o">=</span> <span class="p">[</span><span class="n">dist_y</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span><span class="p">)]</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">value_y</span><span class="p">,</span> <span class="n">value_y</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span>  <span class="c1"># dot product / ensemble size</span>
+                    <span class="n">msd_y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+                <span class="c1"># Calculate MSD for Z</span>
+                <span class="n">no_simulations</span><span class="p">,</span> <span class="n">no_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">dist_z</span><span class="p">)</span>
+                <span class="n">msd_z</span> <span class="o">=</span> <span class="p">[]</span>
+
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---------Started calculating MSD, Z, no stochastic resetting--------&quot;</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">no_points</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)):</span>
+                    <span class="n">value_z</span> <span class="o">=</span> <span class="p">[</span><span class="n">dist_z</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span><span class="p">)]</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">value_z</span><span class="p">,</span> <span class="n">value_z</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span>  <span class="c1"># dot product / ensemble size</span>
+                    <span class="n">msd_z</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+                <span class="c1"># Theoretical vs. Ensemble</span>
+                <span class="n">figure</span><span class="p">,</span> <span class="p">(</span><span class="n">ax</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+
+                <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">AutoMinorLocator</span><span class="p">())</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">AutoMinorLocator</span><span class="p">())</span>
+
+                <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation_time</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+                <span class="c1"># Analytical D1</span>
+                <span class="n">D1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_x</span> <span class="o">/</span> <span class="p">(</span>
+                        <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_y</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_z</span><span class="p">)))</span>
+                <span class="n">factor_x</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">D1</span> <span class="o">/</span> <span class="n">gamma</span><span class="p">(</span><span class="mi">5</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+
+                <span class="c1"># Analytical D2</span>
+                <span class="n">D2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_y</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_z</span><span class="p">))</span>
+                <span class="n">factor_y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">D2</span> <span class="o">/</span> <span class="n">gamma</span><span class="p">(</span><span class="mi">3</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+                <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">factor_x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mf">0.25</span><span class="p">)(</span><span class="n">x</span><span class="p">),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+                        <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Theory, X, $t^{1/4}$&quot;</span><span class="p">,</span>
+                        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FB9300&#39;</span><span class="p">)</span>
+
+                <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">msd_x</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Simulation, X&quot;</span><span class="p">,</span>
+                        <span class="n">markevery</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+                <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">factor_y</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)(</span><span class="n">x</span><span class="p">),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+                        <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Theory, Y, $t^{1/2}$&quot;</span><span class="p">,</span>
+                        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FB9300&#39;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">msd_y</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Simulation, Y&quot;</span><span class="p">,</span>
+                        <span class="n">markevery</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+                <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_z</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">1</span><span class="p">)(</span><span class="n">x</span><span class="p">),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+                        <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Theory, Z, $t^1$&quot;</span><span class="p">,</span>
+                        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FB9300&#39;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">msd_z</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Simulation, Z&quot;</span><span class="p">,</span>
+                        <span class="n">markevery</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+                <span class="c1"># Add legend if comparing values</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span>
+                           <span class="n">fancybox</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                           <span class="n">shadow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                           <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;x-small&#39;</span><span class="p">)</span>
+
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+
+                <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;time, $t$&quot;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;MSD; $\langle x^2(t)\rangle,\langle y^2(t)\rangle, \langle z^2(t)\rangle$&quot;</span><span class="p">,</span>
+                          <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mf">1.9</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="s2">&quot;in&quot;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+    <span class="c1"># # plt_pdf==True: Plots PDF</span>
+    <span class="c1"># def plot_pdf(self):</span>
+    <span class="c1">#     print(&quot;Under construction....&quot;)</span>
+    <span class="c1">#     return</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ensemble_size</span><span class="p">,</span> <span class="n">ensemble_type</span><span class="p">,</span> <span class="n">drift</span><span class="p">,</span> <span class="n">diffusion_coefficients</span><span class="p">,</span> <span class="n">reset_rate</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span>
+                 <span class="n">simulation_time</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">plt_traj</span><span class="p">,</span> <span class="n">plt_msd</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param ensemble_size: Number of motions to simulate</span>
+<span class="sd">        :param ensemble_type: Can be one of:</span>
+<span class="sd">                              - &#39;1D&#39;: simple brownian motion</span>
+<span class="sd">                              - &#39;2D&#39;: two dimensional comb</span>
+<span class="sd">                              - &#39;3D&#39;: three dimensional comb</span>
+<span class="sd">        :param drift: External force - drift</span>
+<span class="sd">        :param diffusion_coefficients: List of 1, 2 or 3 diffusion coefficients</span>
+<span class="sd">        :param sigma: scaling factor for Dirac mimic function, A(y) or B(z). For larger sigma, bigger values for near 0</span>
+<span class="sd">        :param y0: starting point (if one exists)</span>
+<span class="sd">        :param simulation_time: total time for simulation</span>
+<span class="sd">        :param dt: dt - change in time - size of each interval</span>
+<span class="sd">        :param plt_traj: flag - True (plots trajectories)</span>
+<span class="sd">        :param plt_msd: flag - True (plots msd)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Initial parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_cores</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_size</span> <span class="o">=</span> <span class="n">ensemble_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ensemble_type</span> <span class="o">=</span> <span class="n">ensemble_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">drift</span> <span class="o">=</span> <span class="n">drift</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset_rate</span> <span class="o">=</span> <span class="n">reset_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset_points</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_x</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_y</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_z</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_coefficients</span><span class="p">(</span><span class="n">diffusion_coefficients</span><span class="p">)</span>  <span class="c1"># Run check and set diffusion coefficients</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_pos</span> <span class="o">=</span> <span class="n">y0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
+
+        <span class="c1"># Define time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">simulation_time</span> <span class="o">=</span> <span class="n">simulation_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">simulation_time</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>
+
+        <span class="c1"># Speed up calculations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sqrt_dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">**</span> <span class="mf">0.5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sqrt_2Dx</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_x</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sqrt_2Dy</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_y</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sqrt_2Dz</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffusion_coefficient_z</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+
+        <span class="c1"># Create solution, call methods for solving</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">solution</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_ensemble</span><span class="p">()</span>
+
+        <span class="c1"># Plot trajectories</span>
+        <span class="k">if</span> <span class="n">plt_traj</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">plot_trajectories</span><span class="p">()</span>
+
+        <span class="c1"># Plot MSD</span>
+        <span class="k">if</span> <span class="n">plt_msd</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">plot_msd</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Run simulation with initial parameters (works well with smaller <span class="math notranslate nohighlight">\(dt\)</span> as well):</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n = 10^3\)</span> - Number of simulations</p></li>
+<li><p><span class="math notranslate nohighlight">\(V = 0 \)</span> - Drift</p></li>
+<li><p><span class="math notranslate nohighlight">\(D_x = 1\)</span> - diffusion coefficient</p></li>
+<li><p><span class="math notranslate nohighlight">\(dt=1\)</span> - interval size or step size</p></li>
+<li><p><span class="math notranslate nohighlight">\(tt = 10^5\)</span>  - total time for each simulation</p></li>
+<li><p><span class="math notranslate nohighlight">\(r=0.0001\)</span> - reset rate</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">1_000</span>           <span class="c1">#  N - Size of Ensemble</span>
+<span class="n">V</span> <span class="o">=</span> <span class="mi">0</span>               <span class="c1">#  v - Drift for the diffusion process, v - external force (drift)</span>
+<span class="n">delta_t</span> <span class="o">=</span> <span class="mi">1</span>         <span class="c1"># dt - interval_size</span>
+<span class="n">y_starting</span> <span class="o">=</span> <span class="mi">0</span>      <span class="c1"># y0 - starting point</span>
+<span class="n">tt</span> <span class="o">=</span> <span class="mi">100_000</span>        <span class="c1"># tt - total time for each simulation</span>
+<span class="n">reset_r</span> <span class="o">=</span> <span class="mf">0.0001</span>    <span class="c1">#  r - define reset rate for stochastic resetting</span>
+<span class="n">Dx</span> <span class="o">=</span> <span class="mi">1</span>              <span class="c1"># Dx - Diffusion coef.</span>
+
+<span class="c1"># Run simulations</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">BrownianMotionLangevin</span><span class="p">(</span><span class="n">ensemble_size</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
+                              <span class="n">ensemble_type</span><span class="o">=</span><span class="s1">&#39;1d&#39;</span><span class="p">,</span>
+                              <span class="n">drift</span><span class="o">=</span><span class="n">V</span><span class="p">,</span>
+                              <span class="n">diffusion_coefficients</span><span class="o">=</span><span class="p">[</span><span class="n">Dx</span><span class="p">],</span>
+                              <span class="n">reset_rate</span><span class="o">=</span><span class="n">reset_r</span><span class="p">,</span>
+                              <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                              <span class="n">y0</span><span class="o">=</span><span class="n">y_starting</span><span class="p">,</span>
+                              <span class="n">simulation_time</span><span class="o">=</span><span class="n">tt</span><span class="p">,</span>
+                              <span class="n">dt</span><span class="o">=</span><span class="n">delta_t</span><span class="p">,</span>
+                              <span class="n">plt_traj</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                              <span class="n">plt_msd</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Solution is with size: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">solution</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-------------Started calculating ensemble (1D, RESET)---------------
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 1000/1000 [07:12&lt;00:00,  2.31it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1000, 100001)
+
+Solution is with size:  (1000, 100001)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="b-simulate-the-resetting">
+<h1>B. Simulate the resetting<a class="headerlink" href="#b-simulate-the-resetting" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="b-1-simulate-trajectory">
+<h2>B.1. Simulate trajectory<a class="headerlink" href="#b-1-simulate-trajectory" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">BrownianMotionLangevin</span><span class="o">.</span><span class="n">plot_trajectories</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1_d_reset_8_0.png" src="../_images/1_d_reset_8_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="b-2-simulate-pdf">
+<h2>B.2. Simulate PDF<a class="headerlink" href="#b-2-simulate-pdf" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">BrownianMotionLangevin</span><span class="o">.</span><span class="n">plot_pdf</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="b-3-simulate-msd">
+<h2>B.3. Simulate MSD<a class="headerlink" href="#b-3-simulate-msd" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">BrownianMotionLangevin</span><span class="o">.</span><span class="n">plot_msd</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--------Started calculating MSD, X, stochastic resetting--------
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 100001/100001 [01:00&lt;00:00, 1661.58it/s]
+</pre></div>
+</div>
+<img alt="../_images/1_d_reset_12_2.png" src="../_images/1_d_reset_12_2.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./03"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../02/3_d_comb_1.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">3D backbone</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../04/1_d_search.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">One dimensional Brownian search</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Trifce Sandev, Pece Trajanovski, Kiril Zelenkovski<br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <a href="http://csit.manu.edu.mk/">Macedonian Academy of Sciences and Arts - MASA, Skopje, Macedonia</a>
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
