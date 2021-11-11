@@ -23,7 +23,7 @@ Fig: Simple simulation of the Brownian motion <a href="https://weelookang.blogsp
 
 
 
-A dashboard related to the same project is deployed on Heroku, and is avilable at [dash_brownian](https://dash-brownian.herokuapp.com/). Note that the dashboard is under creation and may not be maintained frequently. 
+A dashboard related to the same project is deployed on Heroku, and is avilable at [dash_brownian](https://dash-brownian.herokuapp.com/). Note that the dashboard is still under creation and may not be maintained frequently (until Feb 22'). 
 
 
-📬 mail: <a href="https://github.com/zelenkastiot"> @kzelenkovski@manu.edu.mk </a>
+📬 Contact email: <a href="https://github.com/zelenkastiot"> @kzelenkovski@manu.edu.mk </a>

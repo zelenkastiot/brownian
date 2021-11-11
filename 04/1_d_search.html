@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>One dimensional search &#8212; Stochastic simulations Brownian Motion</title>
+    <title>One dimensional Brownian search &#8212; Stochastic simulations Brownian Motion</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -43,6 +43,8 @@
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -55,7 +57,10 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="Diffusion with stochastic resetting" href="../03/1_d_reset.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -94,7 +99,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   1. Simple diffusion
  </span>
@@ -111,7 +116,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   2. Diffusion in comb
  </span>
@@ -133,7 +138,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   3. Stohastic reseting
  </span>
@@ -145,7 +150,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   4. Brownian search
  </span>
@@ -153,11 +158,11 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   One dimensional search
+   One dimensional Brownian search
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Resources
  </span>
@@ -214,9 +219,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/04/1_d_search.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/04/1_d_search.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -237,7 +242,7 @@
             href="https://github.com/zelenkastiot/brownian/issues/new?title=Issue%20on%20page%20%2F04/1_d_search.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/zelenkastiot/brownian/edit/main/source/04/1_d_search.md"><button
+        <a class="edit-button" href="https://github.com/zelenkastiot/brownian/edit/main/source/04/1_d_search.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -252,11 +257,63 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/zelenkastiot/brownian/main?urlpath=lab/tree/source/04/1_d_search.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/drive/1oYtd0SE9Jwnm9foC6MJEdXdc2b07-7be?usp=sharing/github/zelenkastiot/brownian/blob/main/source/04/1_d_search.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   One dimensional Brownian search
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-main-class">
+   A. Main class
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#b-simulate-fatd">
+   B. Simulate FATD
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#results">
+     Results
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -265,9 +322,227 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="one-dimensional-search">
-<h1>One dimensional search<a class="headerlink" href="#one-dimensional-search" title="Permalink to this headline">¶</a></h1>
-<p>Notebook to be inserted…</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="one-dimensional-brownian-search">
+<h1>One dimensional Brownian search<a class="headerlink" href="#one-dimensional-brownian-search" title="Permalink to this headline">¶</a></h1>
+<p><em>11-Nov-21</em></p>
+<p>Searching or search processes, in particular random search processes, have recently attracted interest among scientists and practitioners for various reasons: to understand food search strategies of animals and diffusion control of molecular processes in biological cells, but also to improve web search engines and optimize search processes for military tasks (locating enemy vessels or mines).  An essential part of all these processes and applications are various forms of (continuous or discrete time) random walk models. Random search processes based on scale-free, Levy stable jump length distributions (Levy flights) in the absence and presence of an external drift (underwater current, atmospheric wind, a preference of the walker owing to prior experience, or a general bias in an abstract search space), have attracted much attention in the recent years. In computer science and data mining (information retrieval) one particular popular search method is based on a random walk model in which a combination of local and long-range search is implemented: a surfer (walker) visits local neighbors but occasionally visits different regions of the graph, performing (possible) long jumps.</p>
+<p>Many studies on random searches have employed the Brownian search as a default strategy in foraging theory with incomplete information, while others have proposed Levy flights as an efficient strategy in searching for sufficiently sparse targets, stating that the Levy process is one of the most natural and optimal in the search strategy.
+The corresponding Fokker-Planck equation of a Brownian random search process for the non-normalized density function <span class="math notranslate nohighlight">\(f(x,t)\)</span> with a <span class="math notranslate nohighlight">\(\delta\)</span>-sink of strength <span class="math notranslate nohighlight">\(\mathcal{P}_{\textrm{fa}}\)</span> reads</p>
+<br>
+<div class="amsmath math notranslate nohighlight" id="equation-ee943362-9523-4000-bb3c-e32f0cab0489">
+<span class="eqno">(20)<a class="headerlink" href="#equation-ee943362-9523-4000-bb3c-e32f0cab0489" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\frac{\partial}{\partial t}f(x,t)=\mathcal{D}\frac{\partial^{2}}{\partial x^2} f(x,t)-\mathcal{P}_{\mathrm{fa}}(t)\delta(x-X),
+\end{align}\]</div>
+<br>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> is a diffusion coefficient. One assumes here that the initial position is given at <span class="math notranslate nohighlight">\(x=x_0\)</span> by <span class="math notranslate nohighlight">\(f(x,t=0)=\delta(x-x_0)\)</span>. The <span class="math notranslate nohighlight">\(\delta\)</span>-sink means that the random searcher positioned at the beginning at <span class="math notranslate nohighlight">\(x=x_{0}\)</span>,  will be removed at the first arrival at <span class="math notranslate nohighlight">\(x=X\)</span>, i.e., <span class="math notranslate nohighlight">\(f(x=X,t)=0\)</span>. Therefore, <span class="math notranslate nohighlight">\(\mathcal{P}_{\mathrm{fa}}(t)\)</span> represents the <em>first arrival time distribution (FATD)</em>, obtained from</p>
+<br>
+<div class="amsmath math notranslate nohighlight" id="equation-c2525ba0-eaed-4a49-b745-85acc5eceb66">
+<span class="eqno">(21)<a class="headerlink" href="#equation-c2525ba0-eaed-4a49-b745-85acc5eceb66" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\mathcal{P}_{\mathrm{fa}}(t)=-\frac{d}{dt}\int_{-\infty}^{\infty}f(x,t)\,dx=-\frac{d}{dt}\mathcal{S}(t),    
+\end{align}\]</div>
+<br>
+<p>which is a negative time derivative of the <em>survival probability</em> <span class="math notranslate nohighlight">\(\mathcal{S}(t)=\int_{-\infty}^{\infty}f(x,t)\,dx\)</span>. It is given by</p>
+<br>
+<div class="amsmath math notranslate nohighlight" id="equation-b50afb30-c046-40a6-bf57-27d809e6aba3">
+<span class="eqno">(22)<a class="headerlink" href="#equation-b50afb30-c046-40a6-bf57-27d809e6aba3" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    \mathcal{P}_{\textrm{fa}}(t)=\frac{|X-x_0|}{\sqrt{4\pi\mathcal{D}t^{3}}}\times e^{-\frac{(X-x_0)^2}{4\mathcal{D}t}}
+\end{align}\]</div>
+<br>
+<p>with the long time asymptotics, <span class="math notranslate nohighlight">\(\mathcal{P}_{\textrm{fa}}(t)\sim |X-x_0|t^{-3/2}\)</span>. Other important characteristics of searching are the <em>search reliability</em> and the <em>efficiency</em>. The search reliability is accounted as the cumulative arrival probability</p>
+<br>
+<div class="amsmath math notranslate nohighlight" id="equation-b5f5e81d-7cba-48b6-a1b9-47c816496062">
+<span class="eqno">(23)<a class="headerlink" href="#equation-b5f5e81d-7cba-48b6-a1b9-47c816496062" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\mathcal{E}=\left\langle\frac{1}{t}\right\rangle=\int_{0}^{\infty}\mathcal{P}_{\mathrm{fa}}(s)\,ds
+\end{align}\]</div>
+<p>which for the Brownian search is <span class="math notranslate nohighlight">\(\mathcal{P}=1\)</span>. This means that the the searcher will find the target with the probability 1, while the search efficiency,</p>
+<br>
+<div class="amsmath math notranslate nohighlight" id="equation-7853474d-7a3f-4863-b035-639abff3c7e4">
+<span class="eqno">(24)<a class="headerlink" href="#equation-7853474d-7a3f-4863-b035-639abff3c7e4" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\mathcal{E}=\left\langle\frac{1}{t}\right\rangle=\int_{0}^{\infty}\mathcal{P}_{\mathrm{fa}}(s)\,ds
+\end{align}\]</div>
+<br>
+<p>represents the averaged inverse search time. Here <span class="math notranslate nohighlight">\(\mathcal{P}_{\mathrm{fa}}(s)=\mathcal{L}\left[\mathcal{P}_{\mathrm{fa}}(t)\right](s)=\int_{0}^{\infty}\wp_{\textrm{fa}}(t)e^{-st}\,dt\)</span> is the Laplace image of <span class="math notranslate nohighlight">\(\mathcal{P}_{\mathrm{fa}}(t)\)</span>. For the one-dimensional Brownian search, it is given by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-73085891-518d-4ae3-8670-b9c41fa08e7a">
+<span class="eqno">(25)<a class="headerlink" href="#equation-73085891-518d-4ae3-8670-b9c41fa08e7a" title="Permalink to this equation">¶</a></span>\[\begin{align}
+    \mathcal{E}=\frac{2\mathcal{D}}{(X-x_0)^{2}}.
+\end{align}\]</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="a-main-class">
+<h1>A. Main class<a class="headerlink" href="#a-main-class" title="Permalink to this headline">¶</a></h1>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd"> Created on 17-Oct-21</span>
+<span class="sd"> @author: Kiril Zelenkovski</span>
+
+<span class="sd"> Multiprocessing example for simulating FATD using Langevin Eq.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="p">(</span><span class="n">AutoMinorLocator</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
+
+<span class="c1"># Define parameters for BM process</span>
+<span class="k">global</span> <span class="n">n</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">simulation_time</span><span class="p">,</span> <span class="n">Dcx</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">sqrt_2D_dt</span><span class="p">,</span> <span class="n">sqrt_dt</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100_000</span>           <span class="c1"># Size of Ensemble</span>
+<span class="n">V</span> <span class="o">=</span> <span class="mi">0</span>                 <span class="c1"># Drift for the diffusion process, v - external force (drift)</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.001</span>            <span class="c1"># dt = interval_size</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="mi">2</span>                <span class="c1"># y0 - starting point</span>
+<span class="n">simulation_time</span> <span class="o">=</span> <span class="mi">15</span>  <span class="c1"># tt - total time for each simulation</span>
+<span class="n">Dcx</span> <span class="o">=</span> <span class="mi">1</span>               <span class="c1"># Diffusion coefficient</span>
+<span class="n">X</span> <span class="o">=</span> <span class="mi">0</span>                 <span class="c1"># Arrival destination</span>
+
+
+<span class="c1"># Arrival confidence interval (+-d)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">Dcx</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>  
+
+<span class="c1"># Calculate for faster usage</span>
+<span class="n">sqrt_2D_dt</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">Dcx</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+<span class="n">sqrt_dt</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">**</span> <span class="mf">0.5</span>
+
+
+<span class="k">def</span> <span class="nf">brownian_search</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="n">x0</span><span class="p">]</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">time_current</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Loop over time</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">X</span> <span class="o">-</span> <span class="n">d</span> <span class="o">&lt;=</span> <span class="n">s</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">X</span> <span class="o">+</span> <span class="n">d</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># print(np.round(s[t], 5))</span>
+            <span class="k">return</span> <span class="n">time_current</span>
+
+        <span class="k">if</span> <span class="n">time_current</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">time_current</span>
+
+        <span class="n">s</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">sqrt_2D_dt</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">())</span>
+        <span class="n">t</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">time_current</span> <span class="o">+=</span> <span class="n">dt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="b-simulate-fatd">
+<h1>B. Simulate FATD<a class="headerlink" href="#b-simulate-fatd" title="Permalink to this headline">¶</a></h1>
+<p>Simulate the FATD by using Langevin equation approach:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(N=10^5\)</span> - Ensemble size</p></li>
+<li><p><span class="math notranslate nohighlight">\(dt=0.01\)</span> - Interval size</p></li>
+<li><p><span class="math notranslate nohighlight">\(D_x=1\)</span> - Diffusion coefficient</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_0=2\)</span> - Starting point for each process</p></li>
+<li><p><span class="math notranslate nohighlight">\(X=0\)</span> - Arrival/stopping point that we are intrested in</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create pool for multiprocessing</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------------------------Started calculating FATD, X------------------------&quot;</span><span class="p">)</span>
+<span class="n">pool</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="c1"># fatd_s = np.array(pool.map(brownian_search, range(n)))</span>
+<span class="n">fatd_s</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tqdm</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">imap</span><span class="p">(</span><span class="n">brownian_search</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span> <span class="n">total</span><span class="o">=</span><span class="n">n</span><span class="p">))</span>
+<span class="n">pool</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">simulation_time</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">d: &quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Length: &quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fatd_s</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AVG: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">fatd_s</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MAX: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">fatd_s</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MIN: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">fatd_s</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;time: &quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------Started calculating FATD, X------------------------
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 100000/100000 [2:14:45&lt;00:00, 12.37it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>d:  0.044721359549995794
+Length:  100000
+AVG:  20.668476360012917
+MAX:  100.00000000011343
+MIN:  0.08800000000000006
+time:  1599
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># FATD figure</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">simulation_time</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+
+<span class="c1"># First Arrival Time Distribution - analytical</span>
+<span class="n">fatd_a</span> <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">Dcx</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">X</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">Dcx</span> <span class="o">*</span> <span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span>
+        <span class="mi">1</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">time</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">fatd_a</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot; Analytical (PDF)&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#2C2891&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calculate bins</span>
+<span class="n">step</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">fatd_s</span><span class="p">)</span> <span class="o">/</span> <span class="n">step</span><span class="p">)</span> <span class="o">*</span> <span class="n">step</span>
+<span class="n">stop</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">fatd_s</span><span class="p">)</span> <span class="o">+</span> <span class="n">step</span>
+<span class="n">bin_edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
+
+<span class="c1"># Calculate bin centers</span>
+<span class="n">hist</span><span class="p">,</span> <span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">fatd_s</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bin_edges</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">centers</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1"># print(centers)</span>
+
+<span class="c1"># Plot histogram, markers</span>
+<span class="n">markers_on</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">140</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">centers</span><span class="p">,</span> <span class="n">hist</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FB9300&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Simulation (PDF)&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">markevery</span><span class="o">=</span><span class="n">markers_on</span><span class="p">)</span>
+
+<span class="c1"># Plot actual data bins</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">fatd_s</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bin_edges</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;sandybrown&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Monte carlo sim.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Figure tweaks</span>
+<span class="c1"># plt.axvline(x=0.72, linewidth=.5, alpha=1., color=&quot;black&quot;, linestyle=&#39;--&#39;)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span>
+            <span class="n">fancybox</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">shadow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;x-small&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">AutoMinorLocator</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$FATD$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.30</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">AutoMinorLocator</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">simulation_time</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;time, $t$&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
+    <span class="sa">r</span><span class="s2">&quot;FATD Monte Carlo; $x_0=2$, $X$=</span><span class="si">{x}</span><span class="s2">, &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">X</span><span class="p">)</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;$\mathcal</span><span class="si">{D}</span><span class="s2">_x=$&quot;</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;</span><span class="si">{D}</span><span class="s2"> $, \Delta t=$</span><span class="si">{delt}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">D</span><span class="o">=</span><span class="n">Dcx</span><span class="p">,</span>
+                                                                                                            <span class="n">delt</span><span class="o">=</span><span class="n">dt</span><span class="p">),</span>
+    <span class="n">fontdict</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1_d_search_8_0.png" src="../_images/1_d_search_8_0.png" />
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -293,22 +568,15 @@
               </div>
               
         
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="../03/1_d_reset.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Diffusion with stochastic resetting</p>
-            </div>
-        </a>
-    </div>
-
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../03/1_d_reset.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Diffusion with stochastic resetting</p>
+        </div>
+    </a>
 </div>
         
         </div>
@@ -332,8 +600,7 @@
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>
