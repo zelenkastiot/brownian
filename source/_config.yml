@@ -9,16 +9,6 @@ exclude_patterns             : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoi
 execute:
   execute_notebooks: 'off'
 
-
-# Define the name of the latex output file for PDF builds
-latex:
-  latex_documents:
-    targetname              : book.tex
-
-# Add a bibtex file so that we can create citations
-bibtex_bibfiles:
-  - references.bib
-
 # Information about where the book exists on the web
 repository:
   url                       : https://github.com/zelenkastiot/brownian  # Online location of your book
