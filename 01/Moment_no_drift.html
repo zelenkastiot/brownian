@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Brownian motion - without drift &#8212; Stochastic simulations Brownian Motion</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -43,7 +43,7 @@
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
@@ -58,10 +58,7 @@
     <link rel="next" title="Brownian motion - with drift" href="Moment_drift.html" />
     <link rel="prev" title="About" href="../index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
+    <meta name="docsearch:language" content="en" />
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -100,7 +97,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   1. Simple diffusion
  </span>
@@ -117,7 +114,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   2. Diffusion in comb
  </span>
@@ -139,7 +136,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   3. Stohastic reseting
  </span>
@@ -151,7 +148,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   4. Brownian search
  </span>
@@ -163,7 +160,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Resources
  </span>
@@ -350,20 +347,20 @@
 <h2>A. Diffusion equation<a class="headerlink" href="#a-diffusion-equation" title="Permalink to this headline">¶</a></h2>
 <p>The solution of the following diffusion equation
 <br></p>
-<div class="amsmath math notranslate nohighlight" id="equation-ffaea443-8de9-4376-93ac-8ca28d94fd9a">
-<span class="eqno">(1)<a class="headerlink" href="#equation-ffaea443-8de9-4376-93ac-8ca28d94fd9a" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a10aab04-b7a5-4a63-bfe8-2cca016a90eb">
+<span class="eqno">(1)<a class="headerlink" href="#equation-a10aab04-b7a5-4a63-bfe8-2cca016a90eb" title="Permalink to this equation">¶</a></span>\[\begin{align}
   \frac{\partial}{\partial t}P(x,t)=\mathcal{D}\frac{\partial^2}{\partial x^2}P(x,t),
   \end{align}\]</div>
 <br>
 <p>in the infinite domain <span class="math notranslate nohighlight">\(x\in(-\infty,\infty)\)</span>, for initial condition <span class="math notranslate nohighlight">\(P(x,t=0)=\delta(x-x_0)\)</span> and zero boundary conditions at infinity <span class="math notranslate nohighlight">\(P(x=\pm\infty,t)=0\)</span>, where <span class="math notranslate nohighlight">\(P(x,t)\)</span> is the probability density function (PDF) and <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> is diffusion coefficient, is given by the Gaussian probability density function</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bf4b8623-d793-4485-abcb-30a7e9cf6a9c">
-<span class="eqno">(2)<a class="headerlink" href="#equation-bf4b8623-d793-4485-abcb-30a7e9cf6a9c" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-687f8520-6b8d-4e42-a08b-682b0bddebe4">
+<span class="eqno">(2)<a class="headerlink" href="#equation-687f8520-6b8d-4e42-a08b-682b0bddebe4" title="Permalink to this equation">¶</a></span>\[\begin{align}
     P(x,t)=\frac{1}{\sqrt{4\pi\mathcal{D}t}}e^{-\frac{(x-x_0)^2}{4\mathcal{D}t}}.
 \end{align}\]</div>
 <p>This diffusion equation describes Brownian motion. The Brownian motion can also be modeled by the Langevin equation
 <br></p>
-<div class="amsmath math notranslate nohighlight" id="equation-0dd57970-d6ef-46fb-bb30-dba7673290e4">
-<span class="eqno">(3)<a class="headerlink" href="#equation-0dd57970-d6ef-46fb-bb30-dba7673290e4" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a6a08892-69ac-46ee-856d-57d01b1fb8e5">
+<span class="eqno">(3)<a class="headerlink" href="#equation-a6a08892-69ac-46ee-856d-57d01b1fb8e5" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \dot{x}(t)=\sqrt{2\mathcal{D}}\,\xi(t),
 \end{align}\]</div>
 <br>
@@ -381,16 +378,16 @@
 <br>
 <p>The numerical solution is done by numerical integration of the Langevin equation, i.e.,</p>
 <br>
-<div class="amsmath math notranslate nohighlight" id="equation-5448340a-dbce-4827-b429-a859b19fcd5b">
-<span class="eqno">(4)<a class="headerlink" href="#equation-5448340a-dbce-4827-b429-a859b19fcd5b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0f78964a-2a51-4747-ba56-e3c59fa4ebd6">
+<span class="eqno">(4)<a class="headerlink" href="#equation-0f78964a-2a51-4747-ba56-e3c59fa4ebd6" title="Permalink to this equation">¶</a></span>\[\begin{align}
     x(t+\Delta t)=x(t)+\sqrt{2\mathcal{D}\Delta t}\,\zeta(t),
 \end{align}\]</div>
 <br>
 <p>where <span class="math notranslate nohighlight">\(\zeta(t)\)</span> is a zero-mean Gaussian random variable <span class="math notranslate nohighlight">\(\sim N(0, \Delta t)\)</span>.</p>
 <p>Mean squared displacement is calculated using
 <br></p>
-<div class="amsmath math notranslate nohighlight" id="equation-a3df39bc-c80b-47eb-98e2-14c7b2c19522">
-<span class="eqno">(5)<a class="headerlink" href="#equation-a3df39bc-c80b-47eb-98e2-14c7b2c19522" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9db39639-d7c8-4ae0-8579-f3bca88cd8c1">
+<span class="eqno">(5)<a class="headerlink" href="#equation-9db39639-d7c8-4ae0-8579-f3bca88cd8c1" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \langle x^2(t)\rangle=\int_{-\infty}^{\infty}x^2 P(x,t)\,dx=\int_{-\infty}^{\infty}x^2 \frac{1}{\sqrt{4\pi\mathcal{D}t}}e^{-\frac{(x-x_0)^2}{4\mathcal{D}t}}\,dx=x_0^2+2\mathcal{D}t.
 \end{align}\]</div>
 <p>Main class for stohastic process:</p>
@@ -569,8 +566,8 @@
 <h3>B.1. Second moment, <span class="math notranslate nohighlight">\(\langle x^2(t)\rangle\)</span><a class="headerlink" href="#b-1-second-moment-langle-x-2-t-rangle" title="Permalink to this headline">¶</a></h3>
 <p>Mean squared displacement is given by
 <br></p>
-<div class="amsmath math notranslate nohighlight" id="equation-0401c737-4987-4a29-9474-c072f927d054">
-<span class="eqno">(6)<a class="headerlink" href="#equation-0401c737-4987-4a29-9474-c072f927d054" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a474c539-a140-4dc6-b2f0-e2d26976486b">
+<span class="eqno">(6)<a class="headerlink" href="#equation-a474c539-a140-4dc6-b2f0-e2d26976486b" title="Permalink to this equation">¶</a></span>\[\begin{align}
     \langle x^2(t)\rangle=\int_{-\infty}^{\infty}x^2 P(x,t)\,dx=\int_{-\infty}^{\infty}x^2 \frac{1}{\sqrt{4\pi\mathcal{D}t}}e^{-\frac{(x-x_0)^2}{4\mathcal{D}t}}\,dx=x_0^2+2\mathcal{D}t.
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -656,8 +653,8 @@ Scale in case of smaler dt, scale=1.00
 <div class="section" id="b-2-pdf-p-x-t">
 <h3>B.2. PDF, <span class="math notranslate nohighlight">\(P(x,t)\)</span><a class="headerlink" href="#b-2-pdf-p-x-t" title="Permalink to this headline">¶</a></h3>
 <p><span class="math notranslate nohighlight">\(P(x,t)\)</span> is the probability density function (PDF) and <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> is diffusion coefficient, is given by the Gaussian probability density function</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dcda6304-d6d5-4c61-8638-f10100472e73">
-<span class="eqno">(7)<a class="headerlink" href="#equation-dcda6304-d6d5-4c61-8638-f10100472e73" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7bdd75fd-3a6e-43d9-bca5-0ee25bf2fa29">
+<span class="eqno">(7)<a class="headerlink" href="#equation-7bdd75fd-3a6e-43d9-bca5-0ee25bf2fa29" title="Permalink to this equation">¶</a></span>\[\begin{align}
     P(x,t)=\frac{1}{\sqrt{4\pi\mathcal{D}t}}e^{-\frac{(x-x_0)^2}{4\mathcal{D}t}}.
 \end{align}\]</div>
 <p>We calculate the distributions for 3 different times (<span class="math notranslate nohighlight">\(t=[1, 2, 10]\)</span>) and plot their distribution vs. the theoretical for the exact times</p>
@@ -859,22 +856,31 @@ t=10, MSE = 0.0023
               </div>
               
         
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">About</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="Moment_drift.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Brownian motion - with drift</p>
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../index.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">About</p>
+            </div>
+        </a>
     </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+     <div id="next">
+        <a class="right-next" href="Moment_drift.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Brownian motion - with drift</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
 </div>
         
         </div>
@@ -898,7 +904,8 @@ t=10, MSE = 0.0023
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
+  
   </body>
 </html>
